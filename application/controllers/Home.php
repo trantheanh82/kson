@@ -25,6 +25,10 @@ class Home extends Public_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 
+	public function selectlanguages(){
+		
+			$this->render('/home/selectlanguage_view','blank');
+	}
 
 	public function index()
 	{

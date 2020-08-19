@@ -46,13 +46,13 @@ class Articles extends Public_Controller {
 				$this->data['meta_image'] .= $this->data['item']->image;
       }
     }
+		
 		$this->render('/articles/listing_articles');
 
   }
 
   function detail($category,$slug){
 		$this->data['item'] = $this->article_model->get_an_article($slug,$this->current_lang);
-
 		$this->render('/articles/detail_articles');
   }
 

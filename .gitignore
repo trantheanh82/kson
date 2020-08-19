@@ -1,0 +1,5 @@
+application/tmp/*
+application/cache/*
+application/logs/*
+application/config/config.php
+*.DS_Store
