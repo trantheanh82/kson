@@ -11,6 +11,9 @@
 
 $this->load->view('templates/_parts/master_header_view'); ?>
 
-<?php echo $the_view_content; ?>
-
+<!-- CONTENT START -->
+<div class='page-content'>
+    <?php echo $the_view_content; ?>
+</div>
+<!-- CONTENT END -->
 <?php $this->load->view('templates/_parts/master_footer_view');?>

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=$current_lang['slug']?>">
 
 <head>
 
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/html/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title>inteshape Template | Home Page Style 1</title>
+    <title><?=$page_title?></title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,21 +33,24 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
   <style>
-    body{
-      background:transparent url('/assets/kson/img/background-select-language-2.jpg');
-      background-size:100%;
-      background-repeat:no-repeat;
+    html{
+      background: url('/assets/kson/img/background-select-language-2.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     }
 
-    body:after{
-      background: rgba(255,255,255, 0.40);
-      content: "";
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: -1;
+    body{
+      background: transparent;
+    }
+
+    .select-languages{
+      margin-top:5%;
+    }
+
+    .select-languages .card-body{
+      left:0;right:0;margin:auto;min-width:3rem;max-width:500px;
     }
 
     .site-button {
@@ -57,11 +60,7 @@
   }
 
   @media only screen and (max-width:768px){
-    body{
-      background:transparent url('/assets/kson/img/background-select-language-2.jpg');
-      background-position:left;
-      background-size: 100%;
-      background-repeat:no-repeat;
+    .select-languages{
     }
   }
   </style>

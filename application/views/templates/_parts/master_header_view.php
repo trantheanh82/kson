@@ -20,4 +20,6 @@
 </head>
 
 <body>
+  <div class="page-wraper">
+
 <?php echo $this->load->view($template.'/elements/header/section_header')?>

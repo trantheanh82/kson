@@ -35,6 +35,7 @@ class Public_menu_model extends MY_Model
 		->get_all();
 
 		$menus = $this->__menu(0,$items);
+
 		return $menus;
 	}
 
@@ -43,19 +44,15 @@ class Public_menu_model extends MY_Model
 	}
 
 	private function __menu($parent_id,$children){
-		if(is_array($children)){
 			$parents = $children;
 			$items = array();
 			foreach($children as $k => $v){
-				if($children[$k]->parent_id == $parent_id){
-					unset($parents[$k]);
+				if($children->$k->parent_id == $parent_id){
+					unset($parents->$k);
 					$items[$k] = $v;
 					$items[$k]->children = $this->__menu($v->id,$parents);
 				}
 			}
 			return $items;
-		}else{
-			return;
-		}
 	}
 }

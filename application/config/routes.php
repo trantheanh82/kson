@@ -62,9 +62,22 @@ $route['media/(:any)'] = 'media/resize/$1';
 //Clear Cache
 $route['clearcache'] = 'home/clearcache';
 
+$controllers_methods = array(
+  'vn' => array(
+    'home/selectlanguages'=>'home/selectlanguage',
+    'admin/auth/login'=>'admin/auth/login',
+    'home' => 'home'
+  ),
+  'en' => array(
+    'home/selectlanguages'=>'home/selectlanguage',
+    'home' => 'home'
+  ),
+  'ru'=>array(
+    'home/selectlanguages'=>'home/selectlanguage',
+    'home'=>'home'
+  )
+);
 
-
-/*
 $route['^(\w{2})/(.*)'] = function($language, $link) use ($controllers_methods)
 {
 	if(array_key_exists($language,$controllers_methods))
@@ -82,32 +95,11 @@ $route['^(\w{2})/(.*)'] = function($language, $link) use ($controllers_methods)
 	}
 	return $link;
 };
-*/
+
 $route['^(\w{2})/admin'] = '/admin/dashboard';
 
 $route['^(\w{2})$'] = $route['default_controller'];
 
-//route example: http://domain.tld/en/controller => http://domain.tld/controller
-$route['^(\w{2})/(contact|lien-he)'] = '/pages/contact';
-//$route['^(\w{2})/lien-he'] = '/pages/contact';
-
-/*Service or Dich-vu*/
-$route['^(\w{2})/dich-vu'] = '/services';
-$route['^(\w{2})/(service|dich-vu|services)/(:any)'] = '/services/index/$3';
-
-/*Artice*/
-$route['^(\w{2})/(articles|article)/(:any)'] = '/articles/index/$3';
-$route['^(\w{2})/(articles|article)/(:any)/(:any)'] = '/articles/detail/$3/$4';
-
-/*Pages or page*/
-$route['^(\w{2})/(page|pages)/(:any)'] = '/pages/index/$3';
-
-
-$route['^(\w{2})/assets^(.*)'] = '/assets$2';
-
-$route['^(\w{2})/api/^(.*)'] = '/api/$2';
-
-$route['^(\w{2})/filenamager/^(.*)'] = '/filemanager/$2';
 
 $route['^(\w{2})/(.*)'] = '$2';
 

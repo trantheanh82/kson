@@ -9,7 +9,7 @@ class MY_Controller extends MX_Controller {
 	protected $langs = array();
 	protected $default_lang;
 	protected $current_lang;
-	protected $template = 'linhsan';
+	protected $template = 'kson';
 
 	function __construct(){
 
@@ -29,7 +29,6 @@ class MY_Controller extends MX_Controller {
 
 		/* Get Language */
 		$this->load->model('language_model');
-
 		$available_languages = $this->language_model->get_all(array('active'=>'1'));
 
 		if(isset($available_languages))
@@ -55,10 +54,8 @@ class MY_Controller extends MX_Controller {
 
 
 		// Verify if we have a language set in the URL;
-		//$lang_slug = $this->uri->segment(0);
-
-		$lang_slug = $this->uri->config->config['language_abbr'];
-
+		$lang_slug = $this->uri->segment(0);
+		//$lang_slug = $this->uri->config->config['language_abbr'];
 		// If we do, and we have that languages in our set of languages we store the language slug in the session
 		if(isset($lang_slug) && array_key_exists($lang_slug, $this->langs))
 		{
@@ -79,38 +76,39 @@ class MY_Controller extends MX_Controller {
 		else
 		{
 			if(!isset($_SESSION['set_language']))
-            {
-                $set_language = get_cookie('set_language',TRUE);
+      {
+          $set_language = get_cookie('set_language',TRUE);
 
-                if(isset($set_language)  && array_key_exists($set_language, $this->langs))
-                {
-                    $this->current_lang = $set_language;
-                    $_SESSION['set_language'] = $this->current_lang;
-                    //$language  = ($this->current_lang==$this->default_lang) ? '' : $this->current_lang;
-                    //redirect($language);
+          if(isset($set_language)  && array_key_exists($set_language, $this->langs))
+          {
+              $this->current_lang = $set_language;
+              $_SESSION['set_language'] = $this->current_lang;
+              //$language  = ($this->current_lang==$this->default_lang) ? '' : $this->current_lang;
+              //redirect($language);
 
-                } else {
-                    # set the default lang when visiting the site for the first time
-                    $this->current_lang = $this->default_lang;
-                    $_SESSION['set_language'] = $this->default_lang;
-                }
-            }
-            else
-            {
-                $this->current_lang = $this->default_lang;
-                $_SESSION['set_language'] = $this->default_lang;
-            }
+          } else {
+              # set the default lang when visiting the site for the first time
+              $this->current_lang = $this->default_lang;
+              $_SESSION['set_language'] = $this->default_lang;
+          }
+      }
+      else
+      {
+          $this->current_lang = $this->default_lang;
+          $_SESSION['set_language'] = $this->default_lang;
+      }
 		}
+
         // We set a cookie so that if the visitor come again, he will be redirected to its chosen language
 		set_cookie('set_language',$_SESSION['set_language'],2600000);
 
 		// Now we store the languages as a $data key, just in case we need them in our views
 		$this->data['langs'] = $this->langs;
 
-        // Also let's have our current language in a $data key
+    // Also let's have our current language in a $data key
 		$this->data['current_lang'] = $this->langs[$this->current_lang];
-        // For links inside our views we only need the lang slug. If the current language is the default language we don't need to append the language slug to our links
-
+    // For links inside our views we only need the lang slug. If the current language is the default language we don't need to append the language slug to our links
+		
 		if($this->current_lang != $this->default_lang)
 		{
 			$this->data['lang_slug'] = $this->current_lang.'/';
@@ -121,7 +119,6 @@ class MY_Controller extends MX_Controller {
 		}
 
     $_SESSION['lang_slug'] = $this->data['lang_slug'];
-
     //$this->load_languages();
 
     //Get global languages

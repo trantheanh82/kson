@@ -26,36 +26,17 @@ class Home extends Public_Controller {
 	 */
 
 	public function selectlanguages(){
-		
+
 			$this->render('/home/selectlanguage_view','blank');
 	}
 
 	public function index()
 	{
+
 		$this->load->model('slider_model');
 		$this->load->model('layout_item_model');
 
-		$this->data['sliders'] = $this->slider_model->get_home_sliders($this->current_lang);
 
-		$data = $this->layout_item_model->get_home_layout(1,$this->current_lang);
-
-		$content = "";
-		foreach($data as $k=>$v){
-			if(!empty($v->model) && !empty($v->function)){
-				$model = $v->model.'_model';
-				$this->load->model($model);
-				$items = $this->{$model}->get_home_items($this->current_lang);
-				$content .= $this->load->view($this->template.'/elements/modules/'.$v->view,array('items'=>$items),TRUE);
-			}else{
-				if(!empty($v->view)){
-					$content .= $this->load->view($this->template.'/elements/modules/'.$v->view,array('content'=>$v->translation->content->html),TRUE);
-				}else{
-					$content .= $v->translation->content->html;
-				}
-			}
-
-		}
-		$this->data['layout_content'] = $content;
 		$this->render('/home/index_view');
 
 	}

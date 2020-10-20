@@ -78,16 +78,16 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'vietnamese';
+$config['language']	= '';
 
 /* default language abbreviation */
-$config['language_abbr'] = "vn";
+$config['language_abbr'] = "";
 
 /* set available language abbreviations */
-$config['lang_uri_abbr'] = array("vn" => "vietnamese", "en" => "english");
+$config['lang_uri_abbr'] = array("");
 
 /* hide the language segment (use cookie) */
-$config['lang_ignore'] = FALSE;
+$config['lang_ignore'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

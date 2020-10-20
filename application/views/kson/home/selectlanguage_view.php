@@ -1,5 +1,5 @@
-<section class="select-languages">
-  <div class="card-body"  style="position:absolute;top:30%;left:0;right:0;margin:auto;min-width:300px;max-width:500px;">
+<section class="select-languages overlay">
+  <div class="card-body"  style="">
     <div class='logo text-center' style="margin-bottom:7rem;">
         <?php echo img('/assets/'.$template.'/img/logo_h300.png','',array('class'=>'img-responsive'))?>
     </div>

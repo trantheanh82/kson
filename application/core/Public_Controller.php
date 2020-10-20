@@ -19,42 +19,41 @@ class Public_Controller extends MY_Controller{
 		$this->data['langs'] = $this->__getLanguages();
 		$this->data['css_for_elements'] .= "";
 		$this->data['before_head'] .= parent::insert_assets(array(
-			'normalize.css',
 			'bootstrap.min.css',
-			'bootstrap-select.min.css',
-			'animate.css',
-			'font-awesome.min.css',
-			'font/flaticon.css',
-			'/vendor/OwlCarousel/owl.carousel.min.css',
-			'/vendor/OwlCarousel/owl.theme.default.min.css',
-			'meanmenu.min.css',
-			'/vendor/slider/css/nivo-slider.css',
-			'/vendor/slider/css/preview.css',
-			'select2.min.css',
+			'fontawesome/css/font-awesome.min.css',
+			'owl.carousel.min.css',
+			'magnific-popup.min.css',
+			'loader.min.css',
+			'flaticon.min.css',
 			'style.css',
-			'color/deep-orange.css',
+			'skin/skin-6.css',
+			'switcher.css',
+			'/plugins/revolution/revolution/css/settings.css',
+			'/plugins/revolution/revolution/css/navigation.css',
 			'responsive.css'
 		),$this->template,'css',false);
 
-		$this->data['before_head'] .= parent::insert_assets('modernizr-2.8.3.min.js',$this->template,'js',false);
-
+		/*Footer Javascripts*/
 		$this->data['before_body'] .= parent::insert_assets(array(
-			'jquery-2.2.4.min.js',
-			'plugins.js',
+			'jquery-1.12.4.min.js',
+			'popper.min.js',
 			'bootstrap.min.js',
-			'wow.min.js',
-			'/vendor/slider/js/jquery.nivo.slider.js',
-			'/vendor/slider/home.js',
-			'/vendor/OwlCarousel/owl.carousel.min.js',
-			'jquery.meanmenu.min.js',
-			'jquery.scrollUp.min.js',
-			'select2.min.js',
-			'validator.min.js',
-			'jquery.counterup.min.js',
+			'magnific-popup.min.js',
 			'waypoints.min.js',
-			'modernizr-2.8.3.min.js',
-			'jquery.scroll-animate.js',
-			'main.js'
+			'counterup.min.js',
+			'waypoints-sticky.min.js',
+			'isotope.pkgd.min.js',
+			'owl.carousel.min.js',
+			'jquery.owl-filter.js',
+			'stellar.min.js',
+			'custom.js',
+			'jquery.bgscroll.js',
+			'theia-sticky-sidebar.js',
+			'switcher.js',
+			'/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js',
+			'/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js',
+			'/plugins/revolution/revolution/js/extensions/revolution-plugin.js',
+			'rev-script-1.js'
 		),$this->template,'js',false);
 
 		if(!empty($this->data['Settings']['header_javascript'])){
@@ -82,7 +81,6 @@ class Public_Controller extends MY_Controller{
 
 			//$this->db->cache_on();
 			$public_menu = $this->public_menu_model->getTreeMenu($this->current_lang);
-
 			foreach($public_menu as $k => $v){
 				if(!empty($v->user_function)){
 					$model = $v->class_name.'_model';
