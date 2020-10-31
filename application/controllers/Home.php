@@ -36,6 +36,7 @@ class Home extends Public_Controller {
 		$this->load->model('slider_model');
 		$this->load->model('layout_item_model');
 
+		$this->data['sliders'] = $this->slider_model->get_home_sliders($this->current_lang);
 
 		$this->render('/home/index_view');
 
@@ -52,7 +53,6 @@ class Home extends Public_Controller {
 		if($this->agent->is_referral()){
 
 		}
-
 	}
 
 	public function clearcache(){

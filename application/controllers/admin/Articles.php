@@ -73,7 +73,7 @@ class Articles extends Admin_Controller {
 
 	function delete($id){
 		if(!empty($id)){
-			if($this->article_model->delete($id)){
+			if(parent::__delete($id,'article',true,true)){
 				$this->load->model('article_category_model');
 				if($this->article_category_model->delete(array('article_id'=>$id))){
 					$this->session->set_flashdata('message','Article has been deleted.');

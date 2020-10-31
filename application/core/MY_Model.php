@@ -186,6 +186,7 @@ class MY_Model extends CI_Model
     {
         parent::__construct();
         $this->load->helper('inflector');
+        
         $this->_set_connection();
         $this->_set_timestamps();
         $this->_fetch_table();
@@ -1011,7 +1012,7 @@ class MY_Model extends CI_Model
     public function with($request,$arguments = array())
     {
         $this->_set_relationships();
-        
+
         if (array_key_exists($request, $this->_relationships))
         {
             $this->_requested[$request] = array('request'=>$request);

@@ -26,7 +26,7 @@ class Public_Controller extends MY_Controller{
 			'loader.min.css',
 			'flaticon.min.css',
 			'style.css',
-			'skin/skin-6.css',
+			'skin/skin-9.css',
 			'switcher.css',
 			'/plugins/revolution/revolution/css/settings.css',
 			'/plugins/revolution/revolution/css/navigation.css',
@@ -91,6 +91,7 @@ class Public_Controller extends MY_Controller{
 
 				}
 			}
+
 		return $public_menu;
 	}
 

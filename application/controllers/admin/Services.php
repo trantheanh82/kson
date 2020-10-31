@@ -20,7 +20,7 @@ class Services extends Admin_Controller {
 		$this->model = 'service';
 
 		$this->data['before_head'] .= '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">';
-		$this->data['before_head'] .= assets('linhsan/css/font-awesome.min.css',false);
+		$this->data['before_head'] .= assets($this->template.'/css/flaticon.min.css',false);
 		$this->data['before_body'] .= '<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>';
 
 		$this->data['before_body'] .= '<script>$.fn.selectpicker.Constructor.DEFAULTS.iconBase="fa";</script>';
@@ -90,6 +90,8 @@ class Services extends Admin_Controller {
 		}else{
 			$this->session->set_flashdata('error','Error occures, please try again');
 		}
+		redirect('admin/services',true);
+
   }
 
   function submit(){
@@ -130,7 +132,7 @@ class Services extends Admin_Controller {
   }
 
 	function fetch_icon(){
-		$file = FCPATH.'assets/'.$this->template.'/css/font-awesome.min.css';
+		$file = FCPATH.'assets/'.$this->template.'/css/flaticon.min.css';
 
 		$icon_file = fopen($file,'r') or die("Unable to open file!");
 		$file_content = fread($icon_file,filesize($file));

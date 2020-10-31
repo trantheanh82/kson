@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 07, 2020 at 06:53 AM
+-- Generation Time: Oct 25, 2020 at 07:22 AM
 -- Server version: 10.4.13-MariaDB
--- PHP Version: 7.2.24
+-- PHP Version: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `linhsan`
+-- Database: `kson`
 --
 
 -- --------------------------------------------------------
@@ -1288,8 +1288,8 @@ CREATE TABLE `languages` (
 --
 
 INSERT INTO `languages` (`id`, `language_name`, `language_directory`, `slug`, `language_code`, `image`, `default`, `active`) VALUES
-(1, 'Vietnamese', 'vietnamese', 'vn', 'vie', 'vietnamese.png', 1, 1),
-(2, 'English', 'english', 'en', 'eng', 'english.png', 0, 0);
+(1, 'Vietnamese', 'vietnamese', 'vi', 'vie', 'vietnamese.png', 0, 1),
+(2, 'English', 'english', 'en', 'eng', 'english.png', 1, 1);
 
 -- --------------------------------------------------------
 

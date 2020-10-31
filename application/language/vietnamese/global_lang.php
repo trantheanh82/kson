@@ -1,14 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
-* Name:  Ion Auth Lang - English
-*
-*
-*
-*
-* Created:  04.01.2017
-*
-*
-*/
+
 
 //Meta data
 
@@ -20,7 +11,6 @@ $lang['Languages']			= "Ngon ngu";
 // Homepage
 $lang['English']			= 'English';
 $lang['Vietnamese']			= "Tiếng Việt";
-$lang['Japanese']			= '日本語';
 $lang['Languages']			= 'Ngôn ngữ';
 
 $lang['Profile']			= "Hồ sơ";
@@ -49,8 +39,6 @@ $lang['Date']				=	"Ngày";
 
 
 /*Tools*/
-$lang['Print']				=	"In";
-$lang['Generate PDF']		=	"Tạo file PDF";
 
 /*Menu*/
 $lang['Home']				= "Trang chủ";
@@ -79,3 +67,14 @@ $lang['Connect us']         = "Kết nối với chúng tôi";
 
 $lang['Term & Conditions']  = "Điều khoản sử dụng";
 $lang['Privacy']            = "Chính sách bảo mật";
+
+$lang['Mail us'] = $lang['Email']   = $lang['Email address']       = "Email";
+$lang['Call us'] = $lang['Phone']         = "Điện thoại";
+$lang['Get in touch']   =   "Liên hệ KSON";
+$lang['Address info']   = "Địa chỉ công ty";
+$lang['Phone number'] = "Điện thoại";
+
+/*Contact Form*/
+$lang['Name']       = "Họ tên";
+$lang['Message']    = "Lời nhắn";
+$lang['Submit Now'] = "Gửi";

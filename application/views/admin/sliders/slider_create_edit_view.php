@@ -44,6 +44,21 @@
 								array('id'=>$lang['slug'].'_slug','class'=>'form-control editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
 						</div>
 
+						<div class='form-group'>
+              <label for="inputEmail3" class="control-label"><?=lang("Tag Line")?></label>
+                <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
+                <?=form_input('relation[translation]['.$lang['slug'].'][content][tagline]',value(isset($item->content[$lang['slug']]->tagline)?$item->content[$lang['slug']]->tagline:""),
+								array('id'=>$lang['slug'].'_slug','class'=>'form-control editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
+						</div>
+
+						<div class='form-group'>
+							<label for="inputEmail3" class="control-label"><?=lang("Description")?></label>
+							<div class="">
+								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][description]',value(isset($item->content[$lang['slug']]->description)?$item->content[$lang['slug']]->description:""),
+								array('class'=>'form-control','id'=>$lang['slug'].'_description','contenteditable'=>true));?>
+				            </div>
+						</div>
+
             <div class='form-group'>
   						<label for="inputEmail3" class="control-label"><?=lang("Image Pages")?></label>
 
@@ -56,13 +71,7 @@
   					</div>
 
 
-						<div class='form-group'>
-							<label for="inputEmail3" class="control-label"><?=lang("Description")?></label>
-							<div class="">
-								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][description]',value(isset($item->content[$lang['slug']]->description)?$item->content[$lang['slug']]->description:""),
-								array('class'=>'form-control basic-editor','id'=>$lang['slug'].'_description','contenteditable'=>true));?>
-				            </div>
-						</div>
+
 
 						<div class='form-group'>
               <label for="" class="control-label"><?=lang("Button text")?></label>

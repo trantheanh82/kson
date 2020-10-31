@@ -198,12 +198,12 @@
 
 					<!-- upload image -->
 					<div class='form-group'>
-						<label for="inputEmail3" class="control-label"><?=lang("Image Pages")?></label>
+						<label for="inputEmail3" class="control-label"><?=lang("Image Pages")?> 510x510</label>
 
 			     	 	<div class=''>
 			    			<?php //$this->load->view("admin/elements/modules/upload_view",array('file'=>"image",'id'=>"img",'button_name'=>lang("Upload Image"),"field_id"=>"image",'value'=>"",'multiple'=>false,'type_file'=>'articles','basic'=>true));?>
 			    			<?php
-								$this->load->view("admin/elements/modules/upload_image_view",array('type'=>'image','field_id'=>'image','id'=>'image','value'=>isset($item->image)?$item->image:"",'multiple'=>false,'path'=>'/img','button_name'=>'Upload Image','max_width'=>'300px'));
+								$this->load->view("admin/elements/modules/upload_image_view",array('type'=>'image','field_id'=>'image','id'=>'image','value'=>isset($item->image)?$item->image:"",'multiple'=>false,'path'=>'/img/services','button_name'=>'Upload Image','max_width'=>'300px'));
 						?>
 			     	 	</div>
 					</div>

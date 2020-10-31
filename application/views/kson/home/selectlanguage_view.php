@@ -5,16 +5,16 @@
     </div>
     <div class='btn-select-languages text-center'>
 
-    <a href='#' class='site-button btn-half'>English</a>&nbsp;&nbsp;&nbsp;
-    <a href="" class='site-button btn-half'>Vietnamese</a>
+    <a href='<?=base_url()?>en/home' class='site-button btn-half'>English</a>&nbsp;&nbsp;&nbsp;
+    <a href="<?=base_url()?>vi/home" class='site-button btn-half'>Vietnamese</a>
 
     </div>
     <div class='footer-dark'>
     <div class='site-footer social-links text-center'>
       <ul class="social-icons  sx-social-links">
-          <li><a href="javascript:void(0);" class="fa fa-envelope"></a></li>
-          <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
-          <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+          <li><a href="mailto:<?=$Settings['company_email']?>" class="fa fa-envelope" target="blank"></a></li>
+          <li><a href="<?=$Settings['social_facebook']?>" class="fa fa-facebook" target="blank"></a></li>
+          <li><a href="<?=$Settings['social_instagram']?>" class="fa fa-instagram" target="blank"></a></li>
       </ul>
     </div>
 

@@ -1,5 +1,5 @@
 <?php
-
+echo "out";exit();
 if( ! ini_get('date.timezone') )
 {
 	date_default_timezone_set('GMT');
@@ -296,4 +296,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+
 require_once BASEPATH.'core/CodeIgniter.php';

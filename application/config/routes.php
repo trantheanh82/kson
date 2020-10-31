@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
-*/
+*/#
 $route['default_controller'] = 'home/selectlanguages';
 $route['404_override'] = '/home/not_found';
 $route['translate_uri_dashes'] = TRUE;
@@ -62,44 +62,13 @@ $route['media/(:any)'] = 'media/resize/$1';
 //Clear Cache
 $route['clearcache'] = 'home/clearcache';
 
-$controllers_methods = array(
-  'vn' => array(
-    'home/selectlanguages'=>'home/selectlanguage',
-    'admin/auth/login'=>'admin/auth/login',
-    'home' => 'home'
-  ),
-  'en' => array(
-    'home/selectlanguages'=>'home/selectlanguage',
-    'home' => 'home'
-  ),
-  'ru'=>array(
-    'home/selectlanguages'=>'home/selectlanguage',
-    'home'=>'home'
-  )
-);
-
-$route['^(\w{2})/(.*)'] = function($language, $link) use ($controllers_methods)
-{
-	if(array_key_exists($language,$controllers_methods))
-	{
-		foreach($controllers_methods[$language] as $key => $sym_link)
-		{
-			if(strrpos($link, $key,0) !== FALSE)
-			{
-				$new_link = ltrim($link,$key);
-				$new_link = $sym_link.$new_link;
-				break;
-			}
-		}
-		return $new_link;
-	}
-	return $link;
-};
-
 $route['^(\w{2})/admin'] = '/admin/dashboard';
 
 $route['^(\w{2})$'] = $route['default_controller'];
 
+$route['^(\w{2})/assets^(.*)'] = '/assets$2';
+$route['^(\w{2})/api/^(.*)'] = '/api/$2';
+$route['^(\w{2})/filenamager/^(.*)'] = '/filemanager/$2';
 
 $route['^(\w{2})/(.*)'] = '$2';
 

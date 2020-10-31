@@ -84,4 +84,11 @@ class Publicmenu extends Admin_Controller {
 
 		redirect('admin/publicmenu','refresh');
 	}
+
+	function delete($id){
+		if(parent::__delete($id,'public_menu',true,true)){
+			$this->session->set_flashdata('message','item has been deleted.');
+			redirect($this->agent->referrer(),'refresh');
+		}
+	}
 }

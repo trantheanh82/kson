@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /* load the MX_Router class */
@@ -29,7 +30,7 @@ class MY_Controller extends MX_Controller {
 
 		/* Get Language */
 		$this->load->model('language_model');
-		$available_languages = $this->language_model->get_all(array('active'=>'1'));
+		$available_languages = $this->language_model->where(array('active'=>1))->get_all();
 
 		if(isset($available_languages))
 		{
@@ -54,8 +55,8 @@ class MY_Controller extends MX_Controller {
 
 
 		// Verify if we have a language set in the URL;
-		$lang_slug = $this->uri->segment(0);
-		//$lang_slug = $this->uri->config->config['language_abbr'];
+		//$lang_slug = $this->uri->segment(0);
+		$lang_slug = $this->uri->config->config['language_abbr'];
 		// If we do, and we have that languages in our set of languages we store the language slug in the session
 		if(isset($lang_slug) && array_key_exists($lang_slug, $this->langs))
 		{
@@ -108,7 +109,7 @@ class MY_Controller extends MX_Controller {
     // Also let's have our current language in a $data key
 		$this->data['current_lang'] = $this->langs[$this->current_lang];
     // For links inside our views we only need the lang slug. If the current language is the default language we don't need to append the language slug to our links
-		
+
 		if($this->current_lang != $this->default_lang)
 		{
 			$this->data['lang_slug'] = $this->current_lang.'/';

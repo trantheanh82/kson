@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-
 $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
 
 /*
@@ -78,16 +77,16 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= '';
+$config['language']	= 'vietnamese';
 
 /* default language abbreviation */
-$config['language_abbr'] = "";
+$config['language_abbr'] = "vi";
 
 /* set available language abbreviations */
-$config['lang_uri_abbr'] = array("");
+$config['lang_uri_abbr'] = array("vi" => "vietnamese", "en" => "english");
 
 /* hide the language segment (use cookie) */
-$config['lang_ignore'] = TRUE;
+$config['lang_ignore'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,7 +147,7 @@ $config['subclass_prefix'] = 'MY_';
 |	autoloading (application/config/autoload.php)
 */
 
-$config['composer_autoload'] = FCPATH.'vendor/autoload.php';
+$config['composer_autoload'] = FCPATH.'vendor\\autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -236,7 +235,7 @@ $config['log_threshold'] = 4;
 | application/logs/ directory. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = FCPATH.'application/logs/';
+$config['log_path'] = FCPATH.'application\logs\\';
 
 /*
 |--------------------------------------------------------------------------
@@ -295,7 +294,7 @@ $config['error_views_path'] = '';
 | application/cache/ directory.  Use a full server path with trailing slash.
 |
 */
-$config['cache_path'] = FCPATH.'application/cache/';
+$config['cache_path'] = FCPATH.'application\\cache\\';
 
 /*
 |--------------------------------------------------------------------------
@@ -382,7 +381,7 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = FCPATH.'application/tmp';
+$config['sess_save_path'] = FCPATH.'application\\tmp';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
@@ -543,7 +542,7 @@ $config['for_sell']['Y'] 	= "Có Bán";
 $config['for_sell']['N']	= "Không Bán";
 
 /* Setup config for modules
-	*/
+*/
 $config['modules_locations'] = array(
-    APPPATH . 'modules/' => '../modules/'
+    APPPATH . 'modules\\' => '..modules\\'
 );

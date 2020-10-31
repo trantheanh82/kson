@@ -26,7 +26,7 @@ class Sliders extends Admin_Controller {
     ->as_object()
     ->order_by('created_at','ASC')
     ->get_all();
-		
+
     $this->render('admin/sliders/sliders_listing_view');
   }
 

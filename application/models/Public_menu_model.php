@@ -44,6 +44,7 @@ class Public_menu_model extends MY_Model
 	}
 
 	private function __menu($parent_id,$children){
+		if(!empty($children)){
 			$parents = $children;
 			$items = array();
 			foreach($children as $k => $v){
@@ -54,5 +55,8 @@ class Public_menu_model extends MY_Model
 				}
 			}
 			return $items;
+		}else{
+			return;
+		}
 	}
 }

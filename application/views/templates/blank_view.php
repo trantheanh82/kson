@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="/html/css/fontawesome/css/font-awesome.min.css" />
     <!-- MAIN STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="/html/css/style.css">
+    <!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet" type="text/css" href="/html/css/skin-9.css">
 
     <!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">

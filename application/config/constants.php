@@ -86,6 +86,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 /*Customer define constant*/
-defined('TEMPLATE') OR define('TEMPLATE','linhsan');
+defined('TEMPLATE') OR define('TEMPLATE','kson');
 defined('DEFAULT_SORT') OR define('DEFAULT_SORT',5);
 /**/
