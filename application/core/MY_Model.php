@@ -149,6 +149,7 @@ class MY_Model extends CI_Model
     public $previous_page;
     public $all_pages;
     public $pagination_delimiters;
+    public $pagination_delimiters_active;
     public $pagination_arrows;
 
     /* validation */
@@ -186,7 +187,7 @@ class MY_Model extends CI_Model
     {
         parent::__construct();
         $this->load->helper('inflector');
-        
+
         $this->_set_connection();
         $this->_set_timestamps();
         $this->_fetch_table();
@@ -296,6 +297,7 @@ class MY_Model extends CI_Model
         // let's join the subqueries...
         $data = $this->join_temporary_results($data);
         $this->_database->reset_query();
+        $this->_requested = array();
         if(isset($this->return_as_dropdown) && $this->return_as_dropdown == 'dropdown')
         {
             foreach($data as $row)
@@ -1773,9 +1775,10 @@ class MY_Model extends CI_Model
     public function paginate($rows_per_page, $total_rows = NULL, $page_number = 1)
     {
         $this->load->helper('url');
-        $segments = $this->uri->total_segments();
+        $segments = $this->uri->total_segments()-1;
         $uri_array = $this->uri->segment_array();
         $page = $this->uri->segment($segments);
+
         if(is_numeric($page))
         {
             $page_number = $page;
@@ -1786,12 +1789,13 @@ class MY_Model extends CI_Model
             $uri_array[] = $page_number;
             ++$segments;
         }
+
         $next_page = $page_number+1;
         $previous_page = $page_number-1;
 
         if($page_number == 1)
         {
-            $this->previous_page = $this->pagination_delimiters[0].$this->pagination_arrows[0].$this->pagination_delimiters[1];
+            //$this->previous_page = $this->pagination_delimiters[0].anchor(' ',$this->pagination_arrows[0],array('onClick'=>'return false')).$this->pagination_delimiters[1];
         }
         else
         {
@@ -1799,11 +1803,13 @@ class MY_Model extends CI_Model
             $uri_string = implode('/',$uri_array);
             $this->previous_page = $this->pagination_delimiters[0].anchor($uri_string,$this->pagination_arrows[0]).$this->pagination_delimiters[1];
         }
+
         $uri_array[$segments] = $next_page;
         $uri_string = implode('/',$uri_array);
+
         if(isset($total_rows) && (ceil($total_rows/$rows_per_page) == $page_number))
         {
-            $this->next_page = $this->pagination_delimiters[0].$this->pagination_arrows[1].$this->pagination_delimiters[1];
+            //$this->next_page = $this->pagination_delimiters[0].anchor($uri_string, $this->pagination_arrows[1],array('onclick'=>'return false')).$this->pagination_delimiters[1];
         }
         else
         {
@@ -1821,7 +1827,7 @@ class MY_Model extends CI_Model
                 for ($i = 1; $i <= $number_of_pages; $i++) {
                     unset($uri_array[$segments]);
                     $uri_string = implode('/', $uri_array);
-                    $links .= $this->pagination_delimiters[0];
+                    $links .= (($page_number == $i)? $this->pagination_delimiters_active[0]:$this->pagination_delimiters[0]);
                     $links .= (($page_number == $i) ? anchor($uri_string, $i) : anchor($uri_string . '/' . $i, $i));
                     $links .= $this->pagination_delimiters[1];
                 }
@@ -1833,7 +1839,6 @@ class MY_Model extends CI_Model
                 $this->all_pages = $this->pagination_delimiters[0].$this->pagination_delimiters[1];
             }
         }
-
 
         if(isset($this->_cache) && !empty($this->_cache))
         {
@@ -1874,6 +1879,14 @@ class MY_Model extends CI_Model
         if(is_array($delimiters) && sizeof($delimiters)==2)
         {
             $this->pagination_delimiters = $delimiters;
+        }
+        return $this;
+    }
+
+    public function set_pagination_delimiters_active($delimiters){
+        if(is_array($delimiters) && sizeof($delimiters)==2)
+        {
+            $this->pagination_delimiters_active = $delimiters;
         }
         return $this;
     }

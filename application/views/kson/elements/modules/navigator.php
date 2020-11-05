@@ -3,7 +3,7 @@
       <ul class=" nav navbar-nav">
         <?php
           foreach($main_menu as $k=>$v):
-              $link = "";
+              $link = $v->slug->slug;
         ?>
         <li>
             <?=anchor($link,$v->translation->content->name)?>

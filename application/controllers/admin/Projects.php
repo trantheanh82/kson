@@ -31,12 +31,7 @@ class Projects extends Admin_Controller {
 
   function index(){
     $this->data['page_name'] = lang('Projects listing');
-		$this->data['items'] = $this->project_model
-		->with_translation('where:`model`=\''.$this->model.'\' AND `language`=\''.$this->current_lang.'\'')
-		->with_slug('where:`model`=\''.$this->model.'\' AND `language`=\''.$this->current_lang.'\'')
-		->as_object()
-		->order_by('created_at','ASC')
-		->get_all();
+		$this->data['items'] = $this->project_model->get_all_items($this->current_lang);
 
 		$this->render('admin/projects/project_index_view');
   }
@@ -44,4 +39,71 @@ class Projects extends Admin_Controller {
   function create(){
     $this->render('admin/projects/project_create_edit_view');
   }
+
+	function edit($id){
+		if(!empty($id)){
+			$this->data['item'] = $this->project_model->get_item($id);
+
+			foreach($this->data['item']->translations as $k=>$value){
+				$this->data['item']->content[$value->language] = $value->content;
+				$this->data['item']->content[$value->language]->id = $value->id;
+			}
+
+			foreach($this->data['item']->slugs as $k=>$value){
+				$this->data['item']->slug[$value->language] = new \stdClass();
+				$this->data['item']->slug[$value->language]->slug = $value->slug;
+				$this->data['item']->slug[$value->language]->id = $value->id;
+			}
+
+			unset($this->data['item']->translations);
+			unset($this->data['item']->slugs);
+			$this->render('admin/projects/project_create_edit_view');
+		}
+	}
+
+	function delete($id){
+
+	}
+
+	function submit(){
+		$data = $this->input->post();
+		if(!empty($data['images'])){
+			$data['images'][key($data['images'])]['default'] = 1;
+			$data['images'] = json_encode($data['images']);
+			unset($data['files']);
+		}
+
+		foreach($data['relation']['translation'] as $k=>$value){
+			if($data['relation']['translation'][$k]['content']['meta_title'] == ""){
+				$data['relation']['translation'][$k]['content']['meta_title'] = $value['content']['name'];
+			}
+
+			if($data['relation']['translation'][$k]['content']['meta_description'] == ""){
+				$data['relation']['translation'][$k]['content']['meta_description'] = strip_tags($value['content']['description']);
+			}
+		}
+
+		if(!empty($data['id'])){
+			if(parent::__submit($data,$this->model)){
+				$this->session->set_flashdata('message','services has been updated.');
+
+			}else{
+				$this->session->set_flashdata('error','Error occures, please try again');
+				redirect($this->agent->referrer(),'refresh');
+			}
+		}else{
+
+			if($id = parent::__submit($data,$this->model)){
+
+				$this->session->set_flashdata('message','services has been updated.');
+			}else{
+				$this->session->set_flashdata('error','Error occures, please try again');
+				redirect($this->agent->referrer(),'refresh');
+
+			}
+		}
+
+		redirect('admin/projects','refresh');
+	}
+
 }

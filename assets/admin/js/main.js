@@ -164,18 +164,38 @@ function startjs(){
 }//end of startjs()
 
 window.onload = function(){
-		$('.product-editor').each(function(){
+		$('.product-editor').each(function(e){
 
-			CKEDITOR.replace($(this).attr('id'),{
+			e = CKEDITOR.replace($(this).attr('id'),{
 				customConfig: "/assets/admin/ckeditor/config/product_config.js"
 			});
+
+			e.on('insertElement', function(event) {
+				var element = event.data;
+				if (element.getName() == 'img') {
+					element.addClass('img-responsive');
+					element.removeAttribute("style");
+				}
+			});
+
 		});
 
-		$('.article-editor').each(function(){
+		$('.article-editor').each(function(e){
 
-			CKEDITOR.replace($(this).attr('id'),{
+			e = CKEDITOR.replace($(this).attr('id'),{
 				customConfig: "/assets/admin/ckeditor/config/article_config.js"
 			});
+
+			e.on('insertElement', function(event) {
+				var element = event.data;
+				console.log(event.data);
+				if (element.getName() == 'img') {
+					element.addClass('img-responsive');
+					element.removeAttribute("style");
+
+				}
+			});
+
 		});
 
 		$('.basic-editor').each(function(){

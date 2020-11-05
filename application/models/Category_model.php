@@ -36,7 +36,7 @@ class Category_model extends MY_Model
 
 	}
 
-	function get_dropdown($model,$current_lang="vn"){
+	function get_dropdown($model,$current_lang="vi"){
 		//$lists = $this->get_all();
 		$lists = $this->with_translation('where: `model`=\'category\' AND `language`=\''.$current_lang.'\'')->where(array('model'=>$model,'active'=>'Y'))->get_all();
 		$dropdown = array();
@@ -44,7 +44,6 @@ class Category_model extends MY_Model
 		foreach($lists as $k=>$value){
 			$dropdown[$value->id] = $value->translation->content->name;
 		}
-
 		return $dropdown;
 
 	}
@@ -67,18 +66,28 @@ class Category_model extends MY_Model
 								->get_all();
 	}
 
-	function get_articles($id,$slug,$current_lang){
-		return $this->with_translation("where:`model`='category' and `language`='".$current_lang."'")
-								->with_slug("where:`model`='category' and `language`='".$current_lang."' and `slug`='".$slug."'")
+	function get_articles($id,$slug,$lang){
+		$item =  $this->with_translation("where:`model`='category' and `language`='".$lang."'")
+								->with_slug("where:`model`='category' and `language`='".$lang."' and `slug`='".$slug."'")
 								->with_articles('order_inside:created_at desc')
 								->where(array('id'=>$id,'active'=>'Y'))
+								//->set_cache($lang.'_'.$id.'_'.$slug)
 								->get();
+		return $this->__short_items($item);
+
 	}
 
 	function get_category($id,$slug,$current_lang){
 		return $this->with_translation("where:`model`='category' and `language`='".$current_lang."'")
 								->with_slug("where:`model`='category' and `language`='".$current_lang."' and `slug`='".$slug."'")
-								-where(array('id'=>$id,'active'=>'Y'))
+								->where(array('id'=>$id,'active'=>'Y'))
+								->get();
+	}
+
+	function get_category_v2($id,$current_lang){
+		return $this->with_translation("where:`model`='category' and `language`='".$current_lang."'")
+								->with_slug("where:`model`='category' and `language`='".$current_lang."'")
+								->where(array('id'=>$id,'active'=>'Y'))
 								->get();
 	}
 
@@ -88,7 +97,39 @@ class Category_model extends MY_Model
 								->where(array('active'=>'Y','model'=>'article'))
 								->order_by('sort','ASC')
 								->get_all();
-								return $items;
+		return $this->__short_items($items);
+	}
+
+	function get_categories($lang,$model,$conditions = ""){
+		$conds = array('model'=>$model);
+		if(!empty($conditions)){
+			$conds = array_merge($conds,$conditions);
+		}
+
+		$items =  $this->with_translation("fields:content","where:`model`='category' and `language`='".$lang."'")
+								->with_slug("where:`model`='category' and `language`='".$lang."'")
+								->where($conds)
+								->order_by('sort','ASC')
+								->get_all();
+
+		return $this->__short_items($items);
+	}
+
+	function __short_items($items){
+		if(is_array($items)){
+			foreach($items as $k=>$v){
+				$items[$k]->name = $v->translation->content->name;
+				$items[$k]->description = $v->translation->content->description;
+				$items[$k]->slug = $v->slug->slug;
+				unset($items[$k]->translation);
+			}
+		}else{
+			$items->name = $items->translation->content->name;
+			$items->description = $items->translation->content->description;
+			$items->slug = $items->slug->slug;
+			unset($items->translation);
+		}
+		return $items;
 	}
 
 }

@@ -48,8 +48,6 @@ class Services extends Admin_Controller {
 		$this->data['icons'] = $this->fetch_icon();
 		$this->data['page_name'] = lang('Service')."::".lang('edit');
 		if(!empty($id)){
-
-
 			$this->data['item'] = $this->service_model
 			->with_translations('where:`model`="'.$this->model.'" and `model_id`="'.$id.'"')
 			->with_slugs('where:`model`="'.$this->model.'" AND `model_id`=\''.$id.'\'')

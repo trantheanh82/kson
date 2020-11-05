@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-
+  config.baseHref = '/assets/';
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 
@@ -36,25 +36,30 @@ CKEDITOR.editorConfig = function( config ) {
 	config.format_tags = 'p;h1;h2;h3;pre';
 
 	// Simplify the dialog windows.
-	config.removeDialogTabs = 'link:advanced;image:file;image:Upload';
+	//config.removeDialogTabs = 'link:advanced;image:file;image:Upload';
 
-	config.filebrowserBrowseUrl = '/filemanager/dialog.php?type=1&akey=abc&editor=ckeditor&fldr=';
-	config.filebrowserUploadUrl = '/filemanager/dialog.php?type=1&akey=abc&editor=ckeditor&fldr=';
-	config.filebrowserImageBrowseUrl = '/filemanager/dialog.php?type=1&akey=abc&editor=ckeditor&fldr=';
+	config.filebrowserBrowseUrl = '/filemanager/dialog.php?type=1&akey=abc&editor=ckeditor&relative_url=0&fldr=';
+	config.filebrowserUploadUrl = '/filemanager/dialog.php?type=1&akey=abc&editor=ckeditor&relative_url=0&fldr=';
+	config.filebrowserImageBrowseUrl = '/filemanager/dialog.php?type=1&akey=abc&editor=ckeditor&relative_url=0&fldr=';
 
+  config.protectedSource.push(/<i[^>]*><\/i>/g);
+
+    config.extraPlugins = 'colorbutton,colordialog,stylesheetparser,sourcedialog';
 	//config styleset
 	//config.stylesSet = 'my_styles';
-	config.allowedContent = true;
-	config.extraAllowedContent = 'div(*)';
+	//config.allowedContent = 'div[*]{*} span{*} p{*}';
+  config.allowedContent = true;
+	//config.extraAllowedContent = 'div{*};span{*};p{*}';
 
   config.stylesheetParser_skipSelectors = /(^body\.|^caption\.|\.high|^\.)/i;
+  config.stylesheetParser_validSelectors = /\^(div|p|span|h1|h2|h3|h4|h5|h6|i)\.\w+|^(\.w+\-\w+)/;
 
-  config.stylesheetParser_validSelectors = /\^(div|p|span|h1|h2|h3|h4|h5|h6|)\.\w+|^(\.w+\-\w+)/;
-
-  config.contentsCss = ["http://localhost:8080/assets/linhsan/css/style.css"];
   config.stylesSet = [];
+  config.contentsCss = ["/assets/dangtuyen/css/editor_style.css"];
 
-  config.extraPlugins = 'colorbutton,colordialog,stylesheetparser';
+
+  config.image_alignClasses = [ 'align-left', 'align-center', 'align-right' ];
+  config['placeholder'] = "Enter Content Here";
 
 	//config.options.fileRoot = '/assets/upload/';
 };

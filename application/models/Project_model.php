@@ -20,11 +20,32 @@ class Project_model extends MY_Model
     }
 
     function get_all_items($lang){
-      return $this->service_model
-	                            ->with_translation('where:`translations`.`model`="'.$this->name.'" and `language`="'.$language.'"')
-	                            ->with_slug('where:`model`="'.$this->name.'" and `language`="'.$language.'"')
+      $items =  $this->project_model
+	                            ->with_translation('where:`translations`.`model`="'.$this->name.'" and `language`="'.$lang.'"')
+	                            ->with_slug('where:`model`="'.$this->name.'" and `language`="'.$lang.'"')
 	                            ->where(array('active'=>'Y'))
 	                            ->order_by('sort','ASC')
 	                            ->get_all();
+
+			foreach($items as $k=>$v){
+				if(!empty($v->images)){
+					$jsondecode = json_decode($v->images);
+					$items[$k]->images = reset($jsondecode)->name;
+				}else{
+					$items[$k]->images = "";
+				}
+			}
+		  return $items;
     }
+
+		function get_item($id){
+			$item = $this->project_model
+											->with_translations('where:`translations`.`model`="'.$this->name.'"')
+											->with_slugs('where:`model`="'.$this->name.'"')
+											->where('id',$id)
+											->get();
+			$item->images = json_decode($item->images);
+
+			return $item;
+		}
 }

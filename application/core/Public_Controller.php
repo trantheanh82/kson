@@ -7,6 +7,7 @@ class Public_Controller extends MY_Controller{
 	function __construct(){
 
 		parent:: __construct();
+		$this->load->library('breadcrumbs');
 		$this->data['lang'] = $this->lang->load('global',strtolower($this->data['current_lang']['name']));
 
 		parent::load_languages(false);
@@ -33,9 +34,11 @@ class Public_Controller extends MY_Controller{
 			'responsive.css'
 		),$this->template,'css',false);
 
+		$this->data['before_head'] .= parent::insert_assets(array(
+			'jquery-1.12.4.min.js'),$this->template,'js',false);
+
 		/*Footer Javascripts*/
 		$this->data['before_body'] .= parent::insert_assets(array(
-			'jquery-1.12.4.min.js',
 			'popper.min.js',
 			'bootstrap.min.js',
 			'magnific-popup.min.js',
@@ -69,6 +72,8 @@ class Public_Controller extends MY_Controller{
 		$this->data['page_title'] = $this->data['Settings']['company_name']." ";
 		$this->data['meta_description'] = '';
 		$this->data['meta_image'] = "";
+
+		$this->breadcrumbs->push(lang("Home"),'/');
 
 	}
 

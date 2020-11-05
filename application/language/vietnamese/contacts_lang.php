@@ -1,3 +1,3 @@
 <?php
-$lang['Information'] = "Thông tin liên hệ";
+$lang['Info'] = "Thông tin liên hệ";
 ?>

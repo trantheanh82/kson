@@ -79,6 +79,9 @@ class Admin_Controller extends MY_Controller{
 
 		/**/
 
+
+	$this->get_notifications();
+
 	}
 
 	protected function render($the_view = null, $template = "admin_master"){
@@ -134,6 +137,7 @@ class Admin_Controller extends MY_Controller{
 			}
 			$this->config->set_item('uploadFileScript_loaded',true);
 		}
+
 	}
 
 	function __getDropdownList($object,$key,$value){
@@ -506,6 +510,16 @@ class Admin_Controller extends MY_Controller{
 		}else{
 			return false;
 		}
+
+	}
+
+	function get_notifications(){
+		/*Notify Request call */
+
+		/*Notify Contact*/
+		$this->load->model('contact_model');
+		$this->data['notification_contact'] = $this->contact_model->where(array('view'=>'N'))->count_rows();
+
 
 	}
 

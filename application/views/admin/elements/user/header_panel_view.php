@@ -1,4 +1,91 @@
+<!-- Messages: style can be found in dropdown.less-->
+<?php
+//notification request call
+if(isset($notification_contact)):
+?>
+<li>
 
+  <a href="<?=base_url()?>clearcache"><?=lang("Refresh Page")?></a>
+</li>
+<li class="dropdown messages-menu">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-envelope-o"></i>
+    <span class="label<?=$notification_contact>0?" label-success":""?>"><?=$notification_contact?></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li class="header"><a href="/admin/contacts"><i class='fa fa-address-card'></i><?=lang("We have")." ".$notification_contact." ".lang("new contact")?></a></li>
+    <!--<li>
+      <!-- inner menu: contains the actual data -->
+      <!--<ul class="menu">
+        <li><!-- start message -->
+          <!--<a href="#">
+            <div class="pull-left">
+              <img src="<?=base_url()?>assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <h4>
+              Support Team
+              <small><i class="fa fa-clock-o"></i> 5 mins</small>
+            </h4>
+            <p>Why not buy a new awesome theme?</p>
+          </a>
+        </li>
+        <!-- end message -->
+        <!--<li>
+          <a href="#">
+            <div class="pull-left">
+              <img src="<?=base_url()?>assets/admin/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+            </div>
+            <h4>
+              AdminLTE Design Team
+              <small><i class="fa fa-clock-o"></i> 2 hours</small>
+            </h4>
+            <p>Why not buy a new awesome theme?</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pull-left">
+              <img src="<?=base_url()?>assets/admin/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+            </div>
+            <h4>
+              Developers
+              <small><i class="fa fa-clock-o"></i> Today</small>
+            </h4>
+            <p>Why not buy a new awesome theme?</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pull-left">
+              <img src="<?=base_url()?>assets/admin/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+            </div>
+            <h4>
+              Sales Department
+              <small><i class="fa fa-clock-o"></i> Yesterday</small>
+            </h4>
+            <p>Why not buy a new awesome theme?</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="pull-left">
+              <img src="<?=base_url()?>assets/admin/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+            </div>
+            <h4>
+              Reviewers
+              <small><i class="fa fa-clock-o"></i> 2 days</small>
+            </h4>
+            <p>Why not buy a new awesome theme?</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="footer"><a href="#">See All Messages</a></li>-->
+  </ul>
+</li>
+<?php
+endif; //notification request call
+?>
           <!-- Tasks: style can be found in dropdown.less -->
 
           <!--

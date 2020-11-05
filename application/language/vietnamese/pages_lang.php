@@ -21,5 +21,8 @@ $lang['enter a phone'] = "điền số điện thoại";
 $lang['enter a subject'] = "điền tiêu đề";
 $lang['type in a message'] = "điền thông tin cần liên hệ";
 
+$lang['Info'] = "Thông tin";
+$lang['Form Contact'] = "Liên hệ";
 
-	?>
+$lang['Information updated'] = "Cám ơn bạn đã gửi thông tin liên hệ cho K.SON. K.SON sẽ liên hệ với bạn trong thời gian sớm nhất.";
+?>

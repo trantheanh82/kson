@@ -87,19 +87,12 @@ class Pages extends Admin_Controller {
 	}
 
 	function delete($id){
-		if(!empty($id)){
-			if($this->page_model->delete($id)){
-				$this->session->set_flashdata('messege','The item has been deleted.');
-				redirect('admin/pages','refresh');
-			}else{
-				$this->session->set_flashdata('messege','Error, please try again.');
-			}
+		if(parent::__delete($id,'page',true,true)){
+			$this->session->set_flashdata('message','Page has been deleted.');
 		}else{
-			$this->session->set_flashdata('messege','There is no page id to delete.');
+			$this->session->set_flashdata('error','Error occures, please try again');
 		}
-
 		redirect('admin/pages','refresh');
-
 	}
 
 	function submit($type ='create'){

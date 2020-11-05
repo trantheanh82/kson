@@ -14,8 +14,8 @@ $lang['Vietnamese']			= "Tiếng Việt";
 $lang['Languages']			= 'Ngôn ngữ';
 
 $lang['Profile']			= "Hồ sơ";
-$lang['Useful Links']		= "Liên kết";
-$lang['Latest News']		= "Tin mới";
+$lang['Useful links']		= "Liên kết";
+$lang['Resent Post']		= "Bài viết mới";
 
 $lang['Brochuce']			= "Brochuce";
 $lang['Home']				= "Trang chủ";
@@ -48,7 +48,7 @@ $lang['Products & Solutions']			=	"Sản phẩm & Giải pháp";
 $lang['Our Services']			= "Dịch vụ";
 $lang['Manufactures']		=	"Hãng Sản Xuất";
 $lang['Our Latest News']				=	"Tin tức";
-$lang['Contact']			=	"Liên hệ";
+$lang['Contact us']			=	"Liên hệ";
 $lang['Trade Services']		=	"Thương mại dịch vụ";
 $lang['Activities']			=	"Lĩnh vực hoạt động";
 
@@ -78,3 +78,10 @@ $lang['Phone number'] = "Điện thoại";
 $lang['Name']       = "Họ tên";
 $lang['Message']    = "Lời nhắn";
 $lang['Submit Now'] = "Gửi";
+
+/**/
+$lang['Recent Posts'] = "Bài mới";
+
+/*link*/
+$lang['detail'] = 'chi-tiet';
+$lang['category'] = 'danh-muc';

@@ -88,4 +88,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 /*Customer define constant*/
 defined('TEMPLATE') OR define('TEMPLATE','kson');
 defined('DEFAULT_SORT') OR define('DEFAULT_SORT',5);
+
+defined('PROJECT_IMAGE_FOLDER') OR define('PROJECT_IMAGE_FOLDER','assets/upload/projects/');
+defined('PROJECT_IMAGE_THUMB_FOLDER') OR define('PROJECT_IMAGE_THUMB_FOLDER','assets/upload/projects/thumbnail/');
 /**/

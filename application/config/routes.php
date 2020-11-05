@@ -60,16 +60,26 @@ $route['richfilemanager/(:any)'] = 'admin/richfilemanager/\$1';
 $route['media/(:any)'] = 'media/resize/$1';
 
 //Clear Cache
-$route['clearcache'] = 'home/clearcache';
+$route['^(\w{2})/clearcache'] = 'home/clearcache';
 
 $route['^(\w{2})/admin'] = '/admin/dashboard';
 
-$route['^(\w{2})$'] = $route['default_controller'];
+$route['^(\w{2})/(category|danh-muc)-(:any)'] = "/articles/category/$3";
+$route['^(\w{2})/(category|danh-muc)-(:any)/(:num)'] = "/articles/category/$3/$4";
+
+$route['^(\w{2})/(home|trang-chu)'] = "/home";
+$route['^(\w{2})/blogs'] = "/articles";
+$route['^(\w{2})/blogs/(:num)'] = "/articles/index/$2";
+$route['^(\w{2})/(detail|chi-tiet)-(:any)'] = "/articles/detail/$3";
 
 $route['^(\w{2})/assets^(.*)'] = '/assets$2';
 $route['^(\w{2})/api/^(.*)'] = '/api/$2';
 $route['^(\w{2})/filenamager/^(.*)'] = '/filemanager/$2';
 
+$route['^(\w{2})/(contact|contact-us|lien-he)'] = 'pages/contact';
+
 $route['^(\w{2})/(.*)'] = '$2';
+
+$route['^(\w{2})$'] = $route['default_controller'];
 
 /*for modules*/

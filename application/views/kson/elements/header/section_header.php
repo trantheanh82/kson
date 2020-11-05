@@ -98,7 +98,7 @@
 
                                             <div class="col-xl-6 col-lg-6 col-md-12 ">
                                             	<div class="contact-nav-field shadow-lg p-a30 bg-white" style="background-image:url(images/background/bg-map.png)">
-                                                <form class="cons-contact-form2 form-transparent" method="post" action="form-handler2.php">
+                                                <form class="cons-contact-form2 form-transparent" method="post" action="">
 
                                                     <div class="input input-animate">
                                                         <label for="name"><?=lang('Name')?></label>

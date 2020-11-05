@@ -56,7 +56,14 @@ class Home extends Public_Controller {
 	}
 
 	public function clearcache(){
-		$this->output->delete_cache();
-		redirect('/', 'location');
+		$this->output->delete_cache('/');
+
+		$this->load->library('user_agent');
+		if(!empty($this->agent->referrer())){
+			redirect($this->agent->referrer(), 'location');
+		}else{
+			redirect('/','location');
+		}
+
 	}
 }

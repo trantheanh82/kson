@@ -32,7 +32,9 @@
 
 	function responsive_filemanager_callback(field_id){
 		var url=jQuery('#'+field_id).val();
-		$('#'+field_id).val($('#'+field_id).val().split("<?=base_url()?>")[1]);
+
+		//$('#'+field_id).val($('#'+field_id).val().split("<?=base_url()?>")[1]);
+		console.log($('#'+field_id).val());
 		$('#img_'+field_id).attr('src',url);
 	//your code
 	}
@@ -53,7 +55,6 @@
 		$('.remove-placehold-image').on('click',function(){
 			$('#<?=$id?>').val('');
 			$('#img_<?=$field_id?>').attr('src','');
-
 		})
 	});
 </script>

@@ -9,7 +9,7 @@ class Pages extends Public_Controller {
 		$this->load->language('pages_lang');
 		$this->load->model('page_model');
 
-		$this->data['before_body'] .= parent::insert_assets('jquery.magnific-popup.min.js',$this->template,'js',false);
+		$this->data['before_body'] .= parent::insert_assets(array('magnific-popup.min.js','map.js','map.script.js'),$this->template,'js',false);
 
 	}
 
@@ -42,7 +42,6 @@ class Pages extends Public_Controller {
   public function contact(){
 
 		$model = 'page';
-    $this->load->model('page_model');
     $this->load->model('slug_model');
 
 		if($this->input->is_ajax_request()){
@@ -50,25 +49,26 @@ class Pages extends Public_Controller {
 			$data = $this->input->post();
 			$data['created_at'] = date('Y-m-d H:i:s');
 			if($this->contact_model->insert($data)){
-				echo "success";
+				$return['success'] = true;
+				$return['message'] =  lang('Information updated');
+				echo json_encode($return);
 			}else{
 				echo lang("Something wrong, please try again.");
 			}
-
 			return;
 		}
 
     $page_id = $this->slug_model
 		->fields('model_id')
 		->where(
-			"slug='contact' and language='".$this->current_lang."' and model='page' or `slug`='lien-he' and language='".$this->current_lang."' and model='page'  ",'','',false,false,true)
+			"slug='contact-us' and language='".$this->current_lang."' and model='page' or `slug`='lien-he' and language='".$this->current_lang."' and model='page'  ",'','',false,false,true)
 		->get();
 		$this->data['item']= $this->page_model
 													->with_translation('fields:content','where:`model`="'.$model.'" and `language`="'.$this->current_lang.'"')
 													->where('id',$page_id->model_id)
 													->get();
 	  $this->data['before_head'] .= '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-7QS3g8eFOy8ieWMQ7_r6ROWsjIfVtMU"></script>';
-		$this->data['before_head'] .= "<style>.page-title{background: url(".base_url().$this->data['item']->image.")}</style>";
+		$this->data['before_head'] .= "<style>#page_inner{background: url(".base_url().$this->data['item']->image.")}</style>";
 		/*for meta tag*/
 		$this->data['page_title'] .= $this->data['item']->translation->content->meta_title;
 		$this->data['meta_description'] .= $this->data['item']->translation->content->meta_description;
@@ -107,7 +107,12 @@ class Pages extends Public_Controller {
         google.maps.event.addDomListener(window, "load", initialize);
     }
     </script>';
-		$this->render('/pages/contact_us_view');
+
+		$this->data['page_inner_title'] = $this->data['item']->translation->content->name;
+		$this->data['page_inner_description'] = $this->data['item']->translation->content->description;
+		$this->breadcrumbs->push($this->data['item']->translation->content->name,'/'.$this->data['item']->slug->slug);
+
+		$this->render('/pages/contact_view');
   }
 
 }

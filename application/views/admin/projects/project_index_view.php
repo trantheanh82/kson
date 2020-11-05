@@ -26,7 +26,11 @@
 				<?php
 					if(!empty($items)):
 						foreach($items as $k=>$v):
-						$img = img(base_url().preg_replace("/upload/","thumbs",$v->image),'',array('width'=>100));
+							if(!empty($v->images)):
+									$img = img(PROJECT_IMAGE_THUMB_FOLDER.$v->images,'',array('width'=>100));
+						  else:
+									$img = "";
+							endif;
 					?>
 					<tr>
 						<td class='text-center'><?=$v->id?></td>

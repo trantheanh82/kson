@@ -6,6 +6,7 @@
 	//hidden input form
 
 echo form_hidden('type_file',$type_file);
+echo form_hidden('delete_url',base_url().'admin/upload/delete/');
 	?>
 <div class="row fileupload-buttonbar">
   <div class="col-lg-7">
@@ -30,16 +31,16 @@ echo form_hidden('type_file',$type_file);
       <i class="glyphicon glyphicon-trash"></i>
       <span><?=lang("Delete selected")?></span>
     </button>
-   
+
     <input type="checkbox" class="toggle">
-     <?php 
+     <?php
 	    //end if basic
 	    endif;?>
     <!-- The global file processing state -->
     <span class="fileupload-process"></span>
-    
-    
-    
+
+
+
   </div>
   <!-- The global progress state -->
   <div class="col-lg-5 fileupload-progress fade">
@@ -57,36 +58,34 @@ echo form_hidden('type_file',$type_file);
 	    <?php
 		    if(!empty($value)):
 		    	foreach($value as $k=>$v):
-				$link = base_url().'assets/upload/product/'.$v['name'];
-		    	$link_thumb = base_url().'assets/upload/product/thumbnail/'.$v['name'];
+				$link = base_url().'assets/upload/projects/'.$v->name;
+		    	$link_thumb = base_url().'assets/upload/projects/thumbnail/'.$v->name;
 		    ?>
 		    <tr class="template-download fade in">
               <td>
                   <span class="preview">
-                      
-                          <a href="<?=$link?>" title="<?=$v['name']?>" download="<?=$v['name']?>" data-gallery=""><img src="<?=$link_thumb?>"></a>
-                      
+                          <a href="<?=$link?>" title="<?=$v->name?>" download="<?=$v->name?>" data-gallery=""><img src="<?=$link_thumb?>"></a>
+
                   </span>
               </td>
               <td>
 	              <p class="name">
-	                  <a href="<?$link?>" title="<?=$v['name']?>" data-gallery=""><?=$v['name']?></a>
-	                  
+	                  <a href="<?=$link?>" title="<?=$v->name?>" data-gallery=""><?=$v->name?></a>
 	              </p>
               </td>
               <td>
-                  <span class="size"><?=$v['size']?></span>
-                  <input type="hidden" name="product_image[<?=$k?>][name]" value="<?=$v['name']?>">
-                  <input type="hidden" name="product_image[<?=$k?>][size]" value="<?=$v['size']?>">
+                  <span class="size"><?=$v->size?></span>
+                  <input type="hidden" name="<?=$field_id?>[<?=$k?>][name]" value="<?=$v->name?>">
+                  <input type="hidden" name="<?=$field_id?>[<?=$k?>][size]" value="<?=$v->size?>">
               </td>
               <td>
-                  
-                      <button class="btn btn-danger delete" data-type="DELETE" data-url="<?=base_url()?>	admin/upload/delete/product?file=<?=$v['name']?>">
+
+                      <button class="btn btn-danger delete" data-type="DELETE" data-url="<?=base_url()?>admin/upload/delete/product?file=<?=$v->name?>">
                           <i class="glyphicon glyphicon-trash"></i>
                           <span>Delete</span>
                       </button>
                       <input type="checkbox" name="delete" value="1" class="toggle">
-                  
+
               </td>
           </tr>
           <?php
@@ -100,7 +99,7 @@ echo form_hidden('type_file',$type_file);
 	var n=0;
 	<?php
 		if(!empty($value)){
-			echo "n = ".count($value);
+			echo " n = ". (count((array)$value) +1);
 		}
 		?>
 </script>
@@ -145,7 +144,7 @@ echo form_hidden('type_file',$type_file);
           </tr>
       {% } %}
     </script>
-<!-- The template to display files available for download -->    
+<!-- The template to display files available for download -->
   <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
           <tr class="template-download fade">
@@ -163,7 +162,7 @@ echo form_hidden('type_file',$type_file);
                               <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
                           {% } else { %}
                               <span>{%=file.name%}</span>
-                              
+
                           {% } %}
                       </p>
                   {% } %}
@@ -193,9 +192,9 @@ echo form_hidden('type_file',$type_file);
           </tr>
       {%  n=n+1 } %}
     </script>
-    
+
 <script>
-	
+
 /*jslint unparam: true, regexp: true */
 /*global window, $ */
 /*
@@ -244,17 +243,17 @@ $(function() {
       singleFileUploads: false,
       limitMultiFileUploads: 1
     });
-    
+
     //Callback functions
-    
+
     $('#main_form_submit').on('fileuploaddone',function(e, data){
 	    console.log(data);
     })
-    
+
     $('#main_form_submit').on('fileuploadsdestroy',function(e, data){
-	  	console.log('deleted');  
+	  	console.log('deleted');
     })
-    
+
     // Upload server status check for browsers with CORS support:
     if ($.support.cors) {
       $.ajax({
@@ -283,16 +282,17 @@ $(function() {
           .fileupload('option', 'done')
           // eslint-disable-next-line new-cap
           .call(this, $.Event('done'), { result: result });
+					console.log(result);
       });
   }
 });
 
-// Delete File 
+// Delete File
 $(document).ready(function(){
-	
+
 	$(document).on('click','.delete',function(){
 		obj = $(this);
-		
+
 		$.ajax({
 			url: $(this).attr('href')
 		})
@@ -300,15 +300,15 @@ $(document).ready(function(){
 			if(data == 'done'){
 				alert('done');
 				obj.parent('p').parent('div.col-md-4').fadeOut('fast');
-				
+
 			}
 		});
-		
+
 		n = n-1;
 		return false;
 	});
-	
-	
-	
+
+
+
 })
 </script>

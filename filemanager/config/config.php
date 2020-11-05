@@ -1,6 +1,6 @@
 <?php
 
-$basename = '/';
+$base_url = '';
 
 $version = "9.14.0";
 if (session_id() == '') {
@@ -70,7 +70,8 @@ $config = array(
     | without final / (DON'T TOUCH)
     |
     */
-    'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http"). "://". @$_SERVER['HTTP_HOST'],
+    //'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http"). "://". @$_SERVER['HTTP_HOST'],
+    'base_url' => $base_url,
     /*
     |--------------------------------------------------------------------------
     | path from base_url to base of upload folder
@@ -79,7 +80,7 @@ $config = array(
     | with start and final /
     |
     */
-    'upload_dir' => $basename.'assets/upload/',
+    'upload_dir' => $base_url.'/assets/upload/',
     /*
     |--------------------------------------------------------------------------
     | relative path from filemanager folder to upload folder
@@ -110,7 +111,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-    'thumbs_upload_dir' => $basename.'assets/thumbs/',
+    'thumbs_upload_dir' => $base_url.'assets/thumbs/',
 
 
     /*

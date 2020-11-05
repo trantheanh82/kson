@@ -17,7 +17,7 @@
 			}
 	}
 
- 	echo form_open('admin/services/submit/'.$type,array('role'=>'form','class'=>'form-horizontal','method'=>'post','id'=>'main_form_submit'));
+ 	echo form_open('admin/projects/submit/'.$type,array('role'=>'form','class'=>'form-horizontal','method'=>'post','id'=>'main_form_submit'));
 
 	if(isset($item->id)){
 		echo form_hidden('id',$item->id);
@@ -42,7 +42,7 @@
 						<div class="tab-pane<?=$lang['slug']==$current_lang['slug']?" active":""?>" id="<?=$lang['slug']?>">
 
 						<div class='form-group'>
-              <label for="inputEmail3" class="control-label"><?=lang("Service name")?></label>
+              <label for="inputEmail3" class="control-label"><?=lang("Project name")?></label>
                 <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
                 <?=form_input('relation[translation]['.$lang['slug'].'][content][name]',value(isset($item->content[$lang['slug']]->name)?$item->content[$lang['slug']]->name:""),
 								array('id'=>$lang['slug'].'_slug','class'=>'form-control make_slug editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
@@ -70,22 +70,6 @@
 							<div class="">
 								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][content]',value(isset($item->content[$lang['slug']]->content)?$item->content[$lang['slug']]->content:""),
 													array('class'=>'form-control basic-editor','id'=>$lang['slug'].'_content','contenteditable'=>true));?>
-				            </div>
-						</div>
-
-						<div class='form-group'>
-							<label for="inputEmail3" class="control-label"><?=lang("Benefits")?></label>
-							<div class="">
-								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][benefits]',value(isset($item->content[$lang['slug']]->benefits)?$item->content[$lang['slug']]->benefits:""),
-												array('class'=>'form-control basic-editor','id'=>$lang['slug'].'_benefits','contenteditable'=>true));?>
-				            </div>
-						</div>
-
-						<div class='form-group'>
-							<label for="inputEmail3" class="control-label"><?=lang("Responsibility")?></label>
-							<div class="">
-								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][responsibility]',value(isset($item->content[$lang['slug']]->responsibility)?$item->content[$lang['slug']]->responsibility:""),
-												array('class'=>'form-control basic-editor','id'=>$lang['slug'].'_responsibility','contenteditable'=>true));?>
 				            </div>
 						</div>
 
@@ -160,7 +144,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-              <input type="text" class="form-control pull-right" id="datepicker" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+							<?=form_input('date',value(isset($item->date)?date_format(date_create($item->date),'m/d/Y'):""),array('type'=>'text','class'=>'form-control pull-right','id'=>'datepicker','data-inputmask'=>"'alias': 'dd/mm/yyyy'",'data-mask'=>''))?>
             </div>
             <!-- /.input group -->
           </div>
@@ -169,22 +153,21 @@
 					<!-- Client name -->
           <div class="form-group">
             <label><?=lang("Client")?></label>
-            <input type="text" name="client" class="form-control" placeholder="<?=lang("Client's name")?> ...">
+						<?=form_input('client',value(isset($item->client)?$item->client:""),array('class'=>'form-control','placeholder'=>lang("Client's name")))?>
           </div>
 
 					<!-- Location -->
           <div class="form-group">
             <label><?=lang("Location")?></label>
-            <input type="text" name="location" class="form-control" placeholder="<?=lang("Location")?> ...">
+						<?=form_input('location',value(isset($item->location)?$item->location:""),array('class'=>'form-control','placeholder'=>lang("Location") .'...'))?>
           </div>
 
 					<!-- Year -->
 					<div class="form-group">
             <label><?=lang("Year")?></label>
             <select name='year' class="form-control select2" style="width: 100%;">
-								<option selected="selected" value=<?=date('Y')?>><?=date('Y')?></option>
-								<?php for($i=date('Y')-1;$i>=1980;$i--):?>
-										<option><?=$i?></option>
+								<?php for($i=date('Y');$i>=1980;$i--):?>
+										<option <?=(isset($item->year) && $item->year==$i?'selected':"")?>><?=$i?></option>
 								<?php endfor;?>
             </select>
           </div>
@@ -195,7 +178,7 @@
 	            <label>
 	              <?php
 		              echo form_hidden('on_menu','N');
-					  echo form_checkbox('on_menu','Y',(isset($item->on_menu)?($item->on_menu=='N'?false:true):false),array('class'=>'minimal'));
+					  			echo form_checkbox('on_menu','Y',(isset($item->on_menu)?($item->on_menu=='N'?false:true):false),array('class'=>'minimal'));
 	              ?>
 	            </label>
 	          </div>
@@ -212,24 +195,24 @@
 
 					<!-- Upload Image -->
 					<div class='form-group'>
-						<label for="projects_image" class='control-label'><?=lang("Image")?></label>
+						<label for="projects_image" class='control-label'><?=lang("Image")?> (510x510)</label>
 						<div class="">
-							<?=$this->load->view('admin/elements/modules/upload_view',array('multiple'=>true,'basic'=>true,'file'=>'','type_file'=>'image'))?>
+							<?=$this->load->view('admin/elements/modules/upload_view',array('multiple'=>true,'basic'=>true,'value'=>(isset($item->images)?$item->images:""),'field_id'=>'images','file'=>'images','id'=>"files",'type_file'=>'projects'))?>
 						</div>
 					</div>
 					<hr />
 					<!-- upload image -->
-					<div class='form-group'>
+					<!--<div class='form-group'>
 						<label for="inputEmail3" class="control-label"><?=lang("Image Pages")?> (510x510)</label>
 
 			     	 	<div class=''>
 			    			<?php //$this->load->view("admin/elements/modules/upload_view",array('file'=>"image",'id'=>"img",'button_name'=>lang("Upload Image"),"field_id"=>"image",'value'=>"",'multiple'=>false,'type_file'=>'articles','basic'=>true));?>
 			    			<?php
-								$this->load->view("admin/elements/modules/upload_image_view",array('type'=>'image','field_id'=>'image','id'=>'image','value'=>isset($item->image)?$item->image:"",'multiple'=>false,'path'=>'/img/projects','button_name'=>'Upload Image','max_width'=>'300px'));
-						?>
+							//	$this->load->view("admin/elements/modules/upload_image_view",array('type'=>'image','field_id'=>'image','id'=>'image','value'=>isset($item->image)?$item->image:"",'multiple'=>false,'path'=>'/img/projects','button_name'=>'Upload Image','max_width'=>'300px'));
+								?>
 			     	 	</div>
 					</div>
-					<hr />
+					<hr />-->
 
 		</div>
 

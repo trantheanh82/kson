@@ -341,5 +341,5 @@ function getSnippet( $str, $wordCount = 10 ) {
       0,
       $wordCount*2-1
     )
-  );
+  ).' ...';
 }
