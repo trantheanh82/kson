@@ -3,5 +3,5 @@ application/tmp/*
 application/cache/*
 application/logs/*
 application/config/config.php
-*.DS_Store
+*.DS_Store*
 /application/config/database.php
