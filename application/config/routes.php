@@ -72,6 +72,12 @@ $route['^(\w{2})/blogs'] = "/articles";
 $route['^(\w{2})/blogs/(:num)'] = "/articles/index/$2";
 $route['^(\w{2})/(detail|chi-tiet)-(:any)'] = "/articles/detail/$3";
 
+$route['^(\w{2})/(dich-vu|services)'] = '/services';
+$route['^(\w{2})/(dich-vu|services)-(:any)'] = "/services/detail/$3";
+
+$route['^(\w{2})/(du-an|projects)'] = '/projects';
+$route['^(\w{2})/(du-an|project)-(:any)'] = '/projects/detail/$3';
+
 $route['^(\w{2})/assets^(.*)'] = '/assets$2';
 $route['^(\w{2})/api/^(.*)'] = '/api/$2';
 $route['^(\w{2})/filenamager/^(.*)'] = '/filemanager/$2';

@@ -8,6 +8,7 @@ class Projects extends Admin_Controller {
 
 		parent::__construct();
 		$this->load->model('project_model');
+		$this->load->model('category_model');
 
 		if(!$this->ion_auth->in_group('admin'))
 		{
@@ -37,11 +38,14 @@ class Projects extends Admin_Controller {
   }
 
   function create(){
+		$this->data['categories'] = $this->category_model->get_dropdown('project',$this->current_lang);
+
     $this->render('admin/projects/project_create_edit_view');
   }
 
 	function edit($id){
 		if(!empty($id)){
+			$this->data['categories'] = $this->category_model->get_dropdown('project',$this->current_lang);
 			$this->data['item'] = $this->project_model->get_item($id);
 
 			foreach($this->data['item']->translations as $k=>$value){

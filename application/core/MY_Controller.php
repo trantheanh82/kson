@@ -132,6 +132,7 @@ class MY_Controller extends MX_Controller {
 		$this->data['script_for_layout'] = '';
 		$this->data['script_for_page'] = '';
 		$this->data['css_for_elements'] = '';
+
 	}
 
 	protected function render($the_view = NULL, $template = 'master'){
@@ -204,7 +205,10 @@ class MY_Controller extends MX_Controller {
 
 	public function load_languages($admin=true){
 		$controller_name = $this->router->fetch_class();
-	  $this->lang->load(($admin?"admin/":"").$controller_name.'_lang');
+		/*if(file_exists(($admin?"admin/":"").$controller_name.'_lang.php')){
+	  	$this->lang->load(($admin?"admin/":"").$controller_name.'_lang');
+		}*/
+		$this->lang->load(($admin?"admin/":"").$controller_name.'_lang');
 	}
 
 	protected function get_client_ip() {

@@ -44,6 +44,7 @@ class Category_model extends MY_Model
 		foreach($lists as $k=>$value){
 			$dropdown[$value->id] = $value->translation->content->name;
 		}
+		
 		return $dropdown;
 
 	}

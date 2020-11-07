@@ -58,6 +58,13 @@
 						</div>
 
 						<div class='form-group'>
+              <label for="inputEmail3" class="control-label"><?=lang("Service title")?></label>
+                <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
+                <?=form_input('relation[translation]['.$lang['slug'].'][content][title]',value(isset($item->content[$lang['slug']]->title)?$item->content[$lang['slug']]->title:""),
+								array('id'=>$lang['slug'].'_ttile','class'=>'form-control ','placeholder'=>lang("Title")))?>
+						</div>
+
+						<div class='form-group'>
 							<label for="inputEmail3" class="control-label"><?=lang("Description")?></label>
 							<div class="">
 								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][description]',value(isset($item->content[$lang['slug']]->description)?$item->content[$lang['slug']]->description:""),

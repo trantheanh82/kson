@@ -63,8 +63,10 @@ class Pages extends Public_Controller {
 		->where(
 			"slug='contact-us' and language='".$this->current_lang."' and model='page' or `slug`='lien-he' and language='".$this->current_lang."' and model='page'  ",'','',false,false,true)
 		->get();
+
 		$this->data['item']= $this->page_model
 													->with_translation('fields:content','where:`model`="'.$model.'" and `language`="'.$this->current_lang.'"')
+													->with_slug('where:`model`="'.$model.'" and `language`="'.$this->current_lang.'"')
 													->where('id',$page_id->model_id)
 													->get();
 	  $this->data['before_head'] .= '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-7QS3g8eFOy8ieWMQ7_r6ROWsjIfVtMU"></script>';

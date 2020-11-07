@@ -31,17 +31,28 @@ class Service_model extends MY_Model
 									->with_slug($conditions)
 									->where(array('on_menu'=>'Y','active'=>'Y'))
 									->order_by('sort','ASC')
-									->set_cache($current_lang)
 									->get_all();
 		}
 
 		public function get_items($language){
-			return $this->service_model
+			$items = $this->service_model
 	                            ->with_translation('where:`translations`.`model`="service" and `language`="'.$language.'"')
 	                            ->with_slug('where:`model`="service" and `language`="'.$language.'"')
 	                            ->where(array('active'=>'Y'))
 	                            ->order_by('sort','ASC')
 	                            ->get_all();
+			return $this->__short_items($items);
+		}
+
+		public function get_detail($id,$lang){
+			$conditions = 'where:`model`="'.$this->name.'" and `language`="'.$lang.'"';
+			$item = $this
+										->with_translation($conditions)
+										->with_slug($conditions)
+										->where(array('id'=>$id,'active'=>'Y'))
+										->get();
+			return $this->__short_items($item);
+
 		}
 
 		public function get_home_items($language){
@@ -52,5 +63,30 @@ class Service_model extends MY_Model
 															->set_cache($language.'_get_home_items')
 															->order_by('sort','ASC')
 	                            ->get_all();
+		}
+
+		function __short_items($items){
+			if(is_array($items)){
+				foreach($items as $k=>$v){
+					$items[$k]->name = $v->translation->content->name;
+					$items[$k]->description = $v->translation->content->description;
+					$items[$k]->content = $v->translation->content->content;
+					$items[$k]->slug = $v->slug->slug;
+					if(isset($v->translation->content->title)){
+						$items[$k]->title = $v->translation->content->title;
+					}
+					unset($items[$k]->translation);
+				}
+			}else{
+				$items->name = $items->translation->content->name;
+				if(isset($items->translation->content->title)){
+					$items->title = $items->translation->content->title;
+				}
+				$items->description = $items->translation->content->description;
+				$items->content = $items->translation->content->content;
+				$items->slug = $items->slug->slug;
+				unset($items->translation);
+			}
+			return $items;
 		}
 }

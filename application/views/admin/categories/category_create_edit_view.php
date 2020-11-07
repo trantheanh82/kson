@@ -19,7 +19,7 @@
         }
     }
 
-    $model_type = array('article'=>'Article','page'=>'Pages','service'=>'Service');
+    $model_type = array('article'=>lang('Article'),'page'=>lang('Pages'),'service'=>lang('Service'),'project'=>lang('Project'));
     echo form_open('admin/category/submit/'.$type,array('class'=>'form-horizontal','method'=>'post','id'=>'main_form_submit'));
 ?>
 <!--<form class="form-horizontal" action="<?=site_url('admin/category/submit/'.$type)?>" method="post" id='main_form_submit'>-->
@@ -111,7 +111,7 @@
 	                  <?php
                           foreach ($model_type as $k => $v):
                           ?>
-		                   <option value='<?=$k?>' <?=($model==$k)?"selected":""?>><?=lang($v)?></option>
+		                   <option value='<?=$k?>' <?=($model==$k)?"selected":""?>><?=$v?></option>
 		              <?php
                           endforeach;
                           ?>

@@ -15,6 +15,7 @@
 			      <th class='text-center'><?=lang("ID")?></th>
 			      <th class='text-center'><?=lang("Image")?></th>
 			      <th class='text-center'><?=lang("Name")?></th>
+						<th class='text-center'><?=lang('Category')?></th>
 			      <th class='text-center'><?=lang("Description")?></th>
 			      <th class='text-center'><?=lang("Created")?></th>
 			      <th class='text-center'><?=lang("Modified")?></th>
@@ -36,6 +37,7 @@
 						<td class='text-center'><?=$v->id?></td>
 						<td class='text-center'><a href="<?=base_url()?>admin/projects/edit/<?=$v->id?>"><?=$img?></a>
 						<td><a href="<?=base_url()?>admin/projects/edit/<?=$v->id?>"><?=$v->translation->content->name?></a></td>
+						<td><a href="<?=base_url()?>admin/projects/edit/<?=$v->id?>"><?=isset($v->category)?$v->category->translation->content->name:""?></a></td>
 						<td><?=getSnippet($v->translation->content->description,10)?> [<a href="<?=base_url()?>admin/services/edit/<?=$v->id?>">...</a>]</td>
 						<td class='text-center'><?=$v->created_at?></td>
 						<td class='text-center'><?=$v->updated_at?></td>

@@ -136,6 +136,29 @@
 	        </div>
 	        <hr />
 
+					<?php if(isset($categories)): ?>
+						<!-- Project category -->
+					<div class="form-group">
+						<label class="control-label"><?=lang("Product category")?></label>
+						<div>
+								<select name="category_id" id="product_type" class="form-control select2" style="width: 100%;">
+										<option><?=lang("Select a product category")?></option>
+										<?php
+												$selected = "";
+											foreach($categories as $k=>$v):
+												if($item->category_id == $k)
+													$selected = " selected";
+									?>
+												<option<?=$selected?> value="<?=$k?>"><?=lang($v)?></option>
+									<?php
+										$selected ="";
+										endforeach; ?>
+								</select>
+						</div>
+					</div>
+					<hr  />
+					<?php endif; ?>
+
 					<!-- Date -->
           <div class="form-group">
             <label><?=lang('Date')?>:</label>

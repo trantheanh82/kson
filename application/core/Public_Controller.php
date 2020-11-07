@@ -2,7 +2,7 @@
 
 class Public_Controller extends MY_Controller{
 
-	protected $template;
+	protected $template = 'kson';
 
 	function __construct(){
 
@@ -73,7 +73,7 @@ class Public_Controller extends MY_Controller{
 		$this->data['meta_description'] = '';
 		$this->data['meta_image'] = "";
 
-		$this->breadcrumbs->push(lang("Home"),'/');
+		$this->breadcrumbs->push(lang("Home"),'/home');
 
 	}
 
