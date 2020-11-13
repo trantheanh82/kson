@@ -17,8 +17,9 @@ class Projects extends Public_Controller {
 
   function index(){
 
-    $this->data['page_inner_title'] = $this->page->translation->content->name;
-    $this->data['page_inner_description'] = $this->page->translation->content->description;
+    $this->data['page_title'] .= $this->data['page_inner_title'] =  $this->page->translation->content->name;
+    $this->data['page_inner_description'] = $this->data['page_description'] = $this->page->translation->content->description;
+    $this->data['meta_image'] .= $this->page->image;
     $this->data['before_head'] .= "<style>.page-title{background-image: url(".base_url().$this->page->image.")}</style>";
 
     $this->data['categories'] = $this->category_model->get_dropdown('project',$this->current_lang);
@@ -33,15 +34,15 @@ class Projects extends Public_Controller {
   function detail($slug){
     $item = $this->project_model->get_item_detail($slug,$this->current_lang);
 
-    $this->data['page_inner_title'] = $item->name;
-    $this->data['page_inner_description'] = $item->description;
+    $this->data['page_title'] .= $this->data['page_inner_title'] =  $item->name;
+    $this->data['meta_description'] =$this->data['page_inner_description'] = $this->data['meta_description'] = $item->description;
+    $this->data['meta_image'] .= PROJECT_IMAGE_FOLDER.reset($item->images)->name;
 
     $this->breadcrumbs->push($item->name,'/'.$item->slug);
 
     $this->data['item'] = $item;
-
     $other_projects = $this->project_model->get_all_items($this->current_lang,array('active'=>'Y','id <>'=>$item->id));
-    
+
     $this->data['other_projects'] = $other_projects;
     $this->render('/projects/detail_view');
   }

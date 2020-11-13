@@ -34,7 +34,7 @@
 						<td class='text-center'><?=$v->id?></td>
 						<td class='text-center'><a href="<?=base_url()?>admin/experts/edit/<?=$v->id?>"><?=$img?></a></td>
             <td>
-              <a href="<?=base_url()?>admin/experts/edit/<?=$v->id?>"><?=$v->translation->content->name?></a>
+              <a href="<?=base_url()?>admin/experts/edit/<?=$v->id?>"><?=$v->name?></a>
             </td>
             <td><?=getSnippet($v->translation->content->description,10)?> [<a href="<?=base_url()?>admin/experts/edit/<?=$v->id?>">...</a>]</td>
 						<td class='text-center'><?=$v->created_at?></td>

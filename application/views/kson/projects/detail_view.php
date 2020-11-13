@@ -37,14 +37,7 @@
                                 </div>
 
 
-                                    <div class="m-b0">
-                                        <div class="sx-divider divider-1px  bg-black"><i class="icon-dot c-square"></i></div>
-                                    </div>
-                                    <ul class="social-icons social-square social-darkest m-b0">
-                                      <li><?=anchor("https://www.facebook.com/sharer/sharer.php?u=".site_url(uri_string()),' ',array('class'=>'fa fa-facebook'))?></li>
-                                      <li><?=anchor("http://twitter.com/intent/tweet?url=".site_url(uri_string()),' ',array('class'=>'fa fa-twitter'))?></li>
-                                      <li><?=anchor("https://www.linkedin.com/sharing/share-offsite/?url=".site_url(uri_string()),' ',array('class'=>'fa fa-linkedin'))?></li>
-                                    </ul>
+                                    <?=$this->load->view($template.'/elements/modules/widgets/sharing_view',array('type'=>2))?>
                                 </div>
                             </div>
                         </div>

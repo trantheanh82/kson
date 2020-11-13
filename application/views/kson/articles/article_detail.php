@@ -36,22 +36,8 @@
                                           <?php if(!empty($item->content)) echo $item->content ?>
                                     </div>
 
-                                    <div class="autor-post-tag-share p-a30 bg-gray">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="clearfix single-post-share">
-                                                    <h5><?=lang('Share this Post')?>:</h5>
-                                                    <div class="widget_social_inks">
-                                                        <ul class="social-icons social-md social-square social-dark m-b0">
-                                                          <li><?=anchor("https://www.facebook.com/sharer/sharer.php?u=".site_url(uri_string()),' ',array('class'=>'fa fa-facebook'))?></li>
-                                                          <li><?=anchor("http://twitter.com/intent/tweet?url=".site_url(uri_string()),' ',array('class'=>'fa fa-twitter'))?></li>
-                                                          <li><?=anchor("https://www.linkedin.com/sharing/share-offsite/?url=".site_url(uri_string()),' ',array('class'=>'fa fa-linkedin'))?></li>
-                                                        </ul>
-                                                   </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?=$this->load->view($template.'/elements/modules/widgets/sharing_view',array('type'=>1
+                                  ));?>
 
                                     <div class="post-controls m-tb30">
                                         <div class="d-flex justify-content-between">
@@ -71,7 +57,7 @@
 
                                 </div>
 
-                                
+
                             </div>
                         </div>
                       <?=$this->load->view($template.'/elements/modules/sidebar/right_sidebar_view')?>

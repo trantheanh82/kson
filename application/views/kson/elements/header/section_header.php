@@ -5,7 +5,8 @@
                     <div class="d-flex justify-content-end">
                         <ul class="list-unstyled e-p-bx">
                             <li><span><?=lang("Mail us")?>:</span> <?=$Settings['company_email']?></li>
-                            <li><span><?=lang("Call us")?>:</span><?=$Settings['company_phone_1']?></li>
+                            <li><span><?=lang("Call us")?>:</span><?=$Settings['company_phone_1']?> </li>
+                            <?=$this->load->view($template.'/elements/modules/widgets/select_languages_view')?>
                         </ul>
                     </div>
                 </div>

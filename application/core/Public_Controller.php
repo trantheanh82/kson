@@ -68,9 +68,10 @@ class Public_Controller extends MY_Controller{
 		}
 		$this->data['main_menu'] = $this->__getPublicMenu();
 		$this->data['footer_links'] = $this->__getFooterLinks();
+		$this->data['newest_posts'] = $this->article_model->get_home_items($this->current_lang);
 
 		$this->data['page_title'] = $this->data['Settings']['company_name']." ";
-		$this->data['meta_description'] = '';
+		$this->data['meta_description'] = $this->data['Settings']['description'];
 		$this->data['meta_image'] = "";
 
 		$this->breadcrumbs->push(lang("Home"),'/home');

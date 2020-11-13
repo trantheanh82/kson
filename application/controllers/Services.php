@@ -31,7 +31,9 @@ class Services extends Public_Controller {
 
   function index(){
 
-		$this->data['page_inner_title'] = $this->page->translation->content->name;
+		$this->data['item'] = $this->page;
+
+		$this->data['page_title'] .= $this->data['page_inner_title'] = $this->page->translation->content->name;
     $this->data['page_inner_description'] = $this->page->translation->content->description;
     $this->data['before_head'] .= "<style>.page-title{background-image: url(".base_url().$this->page->image.")}</style>";
 
@@ -47,7 +49,7 @@ class Services extends Public_Controller {
 
 		$item = $this->service_model->get_detail($slug->model_id,$this->current_lang);
 
-		$this->data['page_inner_title'] = $item->name;
+		$this->data['page_title'] .= $this->data['page_inner_title'] = $item->name;
     $this->data['page_inner_description'] =$item->description;
     $this->data['before_head'] .= "<style>.page-title{background-image: url(".base_url().$item->image.")}</style>";
 

@@ -18,11 +18,11 @@
                                 <ul class="social-icons  sx-social-links">
                                   <?php
                                       if(!empty($Settings['social_facebook']))
-                                        echo '<li><a href="'.$Settings['social_facebook'].'" class="fa fa-facebook"></a></li>';
+                                        echo '<li><a href="'.$Settings['social_facebook'].'" class="fa fa-facebook"></a> </li>';
                                       if(!empty($Settings['social_linkedin']))
-                                        echo '<li><a href="'.$Settings['social_linkedin'].'" class="fa fa-linkedin"></a></li>';
+                                        echo '<li><a href="'.$Settings['social_linkedin'].'" class="fa fa-linkedin"></a> </li>';
                                       if(!empty($Settings['social_twitter']))
-                                        echo '<li><a href="'.$Settings['social_twitter'].'" class="fa fa-twitter"></a></li>';
+                                        echo '<li><a href="'.$Settings['social_twitter'].'" class="fa fa-twitter"></a> </li>';
                                       if(!empty($Settings['social_instagram']))
                                         echo '<li><a href="'.$Settings['social_instagram'].'" class="fa fa-instagram"></a></li>';
                                   ?>
@@ -36,63 +36,34 @@
 							<div class="widget recent-posts-entry-date">
                                 <h5 class="widget-title"><?=lang('Resent Post')?></h5>
                                 <div class="widget-post-bx">
+                                    <?php
+                                          if(!empty($newest_posts)):
+                                              foreach($newest_posts as $k=>$v):
+                                                $link = lang('detail').'-'.$v->slug->slug;
+                                     ?>
                                     <div class="widget-post clearfix">
                                         <div class="sx-post-date text-center text-uppercase text-white">
-											<strong class="p-date">15</strong>
-                                            <span class="p-month">Oct</span>
-                                            <span class="p-year">2019</span>
+											                    <strong class="p-date"><?=date_format(date_create($v->created_at),'d')?></strong>
+                                            <span class="p-month"><?=date_format(date_create($v->created_at),'m')?></span>
+                                            <span class="p-year"><?=date_format(date_create($v->created_at),'Y')?></span>
                                         </div>
                                         <div class="sx-post-info">
                                             <div class="sx-post-header">
-                                                <h6 class="post-title"><a href="blog-single.html">On these beams, we’re.</a></h6>
+                                                <h6 class="post-title">
+                                                  <?=anchor($link,getSnippet($v->translation->content->name,15))?>
+                                                </h6>
                                             </div>
-                                            <div class="sx-post-meta">
+                                            <!--<div class="sx-post-meta">
                                                 <ul>
                                                     <li class="post-author"><i class="fa fa-user"></i>By Admin</li>
                                                     <li class="post-comment"><i class="fa fa-comments"></i> 28</li>
                                                 </ul>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div>
-                                    <div class="widget-post clearfix">
-                                        <div class="sx-post-date text-center text-uppercase text-white">
-                                            <strong class="p-date">17</strong>
-                                            <span class="p-month">Oct</span>
-                                            <span class="p-year">2019</span>
-                                        </div>
-                                        <div class="sx-post-info">
-                                            <div class="sx-post-header">
-                                                <h6 class="post-title"><a href="blog-single.html">We’ll be a sensation for</a></h6>
-                                            </div>
-                                            <div class="sx-post-meta">
-                                                <ul>
-                                                    <li class="post-author"><i class="fa fa-user"></i>By Admin</li>
-                                                    <li class="post-comment"><i class="fa fa-comments"></i> 29</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="widget-post clearfix">
-                                        <div class="sx-post-date text-center text-uppercase text-white">
-                                            <strong class="p-date">18</strong>
-                                            <span class="p-month">Oct</span>
-                                            <span class="p-year">2019</span>
-                                        </div>
-                                        <div class="sx-post-info">
-                                            <div class="sx-post-header">
-                                                <h6 class="post-title"><a href="blog-single.html">We’ll be a sensation for</a></h6>
-                                            </div>
-                                            <div class="sx-post-meta">
-                                                <ul>
-                                                    <li class="post-author"><i class="fa fa-user"></i>By Admin</li>
-                                                    <li class="post-comment"><i class="fa fa-comments"></i> 29</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                    <?php endforeach;
+                                  endif;?>
+                                  </div>
                             </div>
                         </div>
 

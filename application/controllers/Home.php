@@ -26,7 +26,10 @@ class Home extends Public_Controller {
 	 */
 
 	public function selectlanguages(){
+			$slug = $this->slug_model->where('slug',array('select-language','chon-ngon-ngu'))->get();
+			$item = $this->page_model->get($slug->model_id);
 
+			$this->data['item'] = $item;
 			$this->render('/home/selectlanguage_view','blank');
 	}
 

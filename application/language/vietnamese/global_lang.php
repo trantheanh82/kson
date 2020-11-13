@@ -83,5 +83,6 @@ $lang['Submit Now'] = "Gửi";
 $lang['Recent Posts'] = "Bài mới";
 
 /*link*/
+$lang['home'] = 'trang-chu';
 $lang['detail'] = 'chi-tiet';
 $lang['category'] = 'danh-muc';

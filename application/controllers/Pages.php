@@ -15,23 +15,31 @@ class Pages extends Public_Controller {
 
   public function index($slug){
 
-		if(!empty($slug) && $this->data['item'] = $this->page_model->get_page($slug,$this->current_lang)){
-			$this->data['items'] = $this->page_model->get_other_page($this->current_lang);
+		if(!empty($slug) && $item = $this->page_model->get_page($slug,$this->current_lang)){
+			$other_page = $this->page_model->get_other_page($this->current_lang);
 
-			$this->data['page_title'] .= $this->data['item']->translation->content->name;
-			$this->data['meta_description'] .= $this->data['item']->translation->content->description;
-			$this->data['meta_image'] .= $this->data['item']->image;
+			$this->data['page_title'] .= $this->data['page_inner_title'] = $item->translation->content->name;
+			$this->data['meta_description'] .= $this->data['page_inner_description'] = $item->translation->content->description;
+			$this->data['meta_image'] .= $item->image;
 
-			$this->data['before_head'] .= "<style>.page-title{background-image: url(".base_url().$this->data['item']->image.")}</style>";
+			$this->data['before_head'] .= "<style>#page_inner{background-image: url(".base_url().$item->image.")}</style>";
 
-			if($this->data['item']->id == 9 ||
-					$this->data['item']->slug->slug == 'about-us' ||
-					$this->data['item']->slug->slug == 'gioi-thieu'){
+			if($item->id == 9 ||
+					$item->slug->slug == 'about-us' ||
+					$item->slug->slug == 'gioi-thieu'){
+
+						if(!empty($item->image)){
+								$this->data['background_image'] = $item->image;
+						}
+
 						$this->load->model('expert_profile_model');
 						$this->load->model('client_model');
 
+						$this->data['services'] = $this->service_model->get_items($this->current_lang);
 						$this->data['experts'] = $this->expert_profile_model->get_home_items($this->current_lang);
 						$this->data['clients'] = $this->client_model->get_home_items();
+
+						$this->data['item'] = $item;
 						$this->render('/pages/about_us_view');
 
 			}else{ $this->render('/pages/page_view');}

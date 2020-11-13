@@ -940,7 +940,7 @@ strong {
 }
 
 .font-weight-800 {
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .font-weight-900 {
@@ -4527,10 +4527,10 @@ btn-half {cursor: pointer;	z-index: 0;	display: inline-block;	position: relative
 .sx-separator-outer.separator-left .sep-line-one{padding:20px 60px 20px 20px;font-size:42px; font-weight:700;}
 .sx-separator-outer.separator-left .sep-line-one:after{width: 20px;	right: 20px;	top: 50%; margin-top:-2px;}
 
-.sx-separator-outer.separator-right .sep-line-one{padding:20px 20px 20px 60px; font-size:42px; font-weight:800;}
+.sx-separator-outer.separator-right .sep-line-one{padding:20px 20px 20px 60px; font-size:42px; font-weight:700;}
 .sx-separator-outer.separator-right .sep-line-one:before{width: 20px;	left: 20px;	top: 50%; margin-top:-2px;}
 
-.sx-separator-outer.separator-center .sep-line-one{padding:20px 60px 20px 60px; font-size:42px; font-weight:800;}
+.sx-separator-outer.separator-center .sep-line-one{padding:20px 60px 20px 60px; font-size:42px; font-weight:700;}
 .sx-separator-outer.separator-center .sep-line-one:before{width: 20px;	left: 20px;	top: 50%; margin-top:-2px;}
 .sx-separator-outer.separator-center .sep-line-one:after{width: 20px;	right: 20px;	top: 50%; margin-top:-2px;}
 
@@ -5381,7 +5381,7 @@ btn-half {cursor: pointer;	z-index: 0;	display: inline-block;	position: relative
 .testimonial-home .owl-prev i,
 .testimonial-home .owl-next i {
 	font-size: 24px;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .testimonial-home.number-slider .owl-dots{
@@ -8236,7 +8236,8 @@ padding:7px 0px;
 }
 
 .e-p-bx li a {
-	color: #FFF;
+	/*color: #FFF;*/
+	color:#222;
 }
 
 .e-p-bx li i {
