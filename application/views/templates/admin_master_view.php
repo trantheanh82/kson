@@ -21,7 +21,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <?=link_tag('assets/admin/bootstrap/dist/css/bootstrap.css?r=random1')?>
+  <?=link_tag('assets/admin/bootstrap/dist/css/bootstrap.css?r=r9283749872938')?>
   <!-- Font Awesome -->
    <?=link_tag('assets/admin/font-awesome/css/font-awesome.min.css')?>
   <!-- Ionicons -->

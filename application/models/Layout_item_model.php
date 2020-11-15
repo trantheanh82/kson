@@ -18,33 +18,28 @@ class Layout_item_model extends MY_Model
   public function admin_get_all_item($layout_id){
     $items =  $this->where(array('layout_id'=>$layout_id))->get_all();
     $this->load->model('translation_model');
-  //  pr($items);
 
     foreach($items as $k=>$v){
       $items[$k]->translations = $this->translation_model->where(array('model_id'=>$v->id,'model'=>'layout_item'))->get_all();
-
       if(!empty($items[$k]->translations)){
-          //pr($items[$k]->section);
         foreach($items[$k]->translations as $a=>$trans){
+
           $items[$k]->translations[$trans->language] = $trans;
-          $items[$k]->translations[$trans->language]->html = $trans->content->html;
           unset($items[$k]->translations[$a]);
         }
       }
-
     }
-    //exit();
     return $items;
   }
 
   function get_home_layout($layout_id,$language){
 
-    $items = $this->where(array('layout_id'=>$layout_id,'active'=>'Y'))->order_by('sort','ASC')->set_cache($language.'_home_layout_item')->get_all();
+    $items = $this->where(array('layout_id'=>$layout_id,'active'=>'Y'))->order_by('sort','ASC')->get_all();
 
     foreach($items as $k=>$v){
-      if($v->model == "" && $v->function == ""){
+    //  if($v->model == "" && $v->function == ""){
         $items[$k]->translation = $this->translation_model->where(array('model'=>'layout_item','model_id'=>$v->id,'language'=>$language))->get();
-      }
+  //    }
     }
     return $items;
   }
@@ -68,8 +63,7 @@ class Layout_item_model extends MY_Model
                 $content['language'] = $lang_slug;
                 $content['model_id'] = $id;
                 $content['model'] = 'layout_item';
-                $content['content'] = json_encode(array('html'=>$content['html']));
-
+                $content['content'] = json_encode($content['content']);
                 if(!isset($content['id'])){
                   $this->translation_model->insert($content);
                 }else{

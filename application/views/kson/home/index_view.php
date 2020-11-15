@@ -1,10 +1,10 @@
 <?=$this->load->view($template.'/elements/modules/home_sliders.php')?>
-<?=$this->load->view($template.'/elements/modules/home_about.php')?>
+<?=$content?>
 
-<?=$this->load->view($template.'/elements/modules/home_what_we_do.php')?>
-<?=$this->load->view($template.'/elements/modules/home_testimonial.php')?>
-<?=$this->load->view($template.'/elements/modules/home_services.php')?>
-<?=$this->load->view($template.'/elements/modules/home_products.php')?>
-<?=$this->load->view($template.'/elements/modules/home_clients.php')?>
+<?php //$this->load->view($template.'/elements/modules/home_what_we_do.php')?>
+<?php //$this->load->view($template.'/elements/modules/home_testimonial.php')?>
+<?php //$this->load->view($template.'/elements/modules/home_services.php')?>
+<?php //$this->load->view($template.'/elements/modules/home_projects.php')?>
+<?php //$this->load->view($template.'/elements/modules/home_clients.php')?>
 
-<?=$this->load->view($template.'/elements/modules/home_our_team.php')?>
+<?php //$this->load->view($template.'/elements/modules/home_our_team.php')?>

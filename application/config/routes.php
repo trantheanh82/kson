@@ -80,9 +80,13 @@ $route['^(\w{2})/(dich-vu|services)-(:any)'] = "/services/detail/$3";
 $route['^(\w{2})/(du-an|projects)'] = '/projects';
 $route['^(\w{2})/(du-an|project)-(:any)'] = '/projects/detail/$3';
 
+$route['^(\w{2})/(member)-(:any)'] = '/teams/details/$3';
+
 $route['^(\w{2})/assets^(.*)'] = '/assets$2';
 $route['^(\w{2})/api/^(.*)'] = '/api/$2';
 $route['^(\w{2})/filenamager/^(.*)'] = '/filemanager/$2';
+
+
 
 $route['^(\w{2})/(contact|contact-us|lien-he)'] = 'pages/contact';
 

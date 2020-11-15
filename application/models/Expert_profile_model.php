@@ -22,7 +22,9 @@ class Expert_profile_model extends MY_Model
 		function get_items($language){
 			$conditions = "where:`model`='expert_profile' AND `language`='".$language."'";
 			$items = $this->with_translation($conditions)->get_all();
-
+			foreach($items as $k => $v){
+				$items[$k]->social = json_decode($v->social);
+			}
 			return $items;
 		}
 
@@ -36,17 +38,21 @@ class Expert_profile_model extends MY_Model
 			}
 
 			unset($item->translations);
-
-
 			return $item;
 
 		}
 
+		function get_detail($slug,$lang){
+
+			$item = $this->where(array('slug'=>$slug,'active'=>'Y'))->with_translation('where:`model`="'.$this->name.'" and `language`="'.$lang.'"')->get();
+
+			$item->social = json_decode($item->social);
+			return $item;
+		}
+
 		function get_home_items($language){
 			$items =  $this->with_translation('where:`translations`.`model`="'.$this->name.'" and `language`="'.$language.'"')
-	                            ->with_slug('where:`model`="'.$this->name.'" and `language`="'.$language.'"')
 	                            ->where(array('active'=>'Y'))
-															->set_cache($language.'_get_home_items')
 															->order_by('sort','ASC')
 	                            ->get_all();
 			foreach($items as $k => $v){

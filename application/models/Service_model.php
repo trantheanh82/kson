@@ -56,13 +56,14 @@ class Service_model extends MY_Model
 		}
 
 		public function get_home_items($language){
-			return $this->service_model
+			$items =  $this->service_model
 	                            ->with_translation('where:`translations`.`model`="service" and `language`="'.$language.'"')
 	                            ->with_slug('where:`model`="service" and `language`="'.$language.'"')
 	                            ->where(array('active'=>'Y'))
 															->set_cache($language.'_get_home_items')
 															->order_by('sort','ASC')
 	                            ->get_all();
+			return $this->__short_items($items);
 		}
 
 		function __short_items($items){

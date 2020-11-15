@@ -39,9 +39,29 @@ class Project_model extends MY_Model
 					$items[$k]->images = "";
 				}
 			}
-			
+
 		  return $items;
     }
+
+		function get_home_items($lang){
+			$items = $items =  $this->project_model
+	                            ->with_translation('where:`translations`.`model`="'.$this->name.'" and `language`="'.$lang.'"')
+	                            ->with_slug('where:`model`="'.$this->name.'" and `language`="'.$lang.'"')
+															->with_category(array('fields'=>'id','where'=>array('model'=>'"project"'),'with'=>array('relation'=>'translation','fields'=>'content','where'=>array('model'=>'"category"','language'=>'"'.$lang.'"'))))
+	                            ->where(array('active'=>'Y'))
+	                            ->order_by('sort','ASC')
+															->limit(10)
+	                            ->get_all();
+			foreach($items as $k=>$v){
+				if(!empty($v->images)){
+					$jsondecode = json_decode($v->images);
+					$items[$k]->images = reset($jsondecode)->name;
+				}else{
+					$items[$k]->images = "";
+				}
+			}
+		  return $this->__short_items($items);
+		}
 
 		function get_item($id){
 			$item = $this->project_model

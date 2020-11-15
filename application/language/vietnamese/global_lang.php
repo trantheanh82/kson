@@ -86,3 +86,4 @@ $lang['Recent Posts'] = "Bài mới";
 $lang['home'] = 'trang-chu';
 $lang['detail'] = 'chi-tiet';
 $lang['category'] = 'danh-muc';
+$lang['member'] = 'member';

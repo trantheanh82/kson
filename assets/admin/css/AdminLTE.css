@@ -4997,11 +4997,11 @@ table.text-center th {
 
 
 .layout_section:nth-child(odd){
-  background:#333;
+  /*background:#333;/*
 }
 
 .layout_section .layout_section__content{
-  background:#f00;
+  /*background:#f00;*/
 }
 .layout_section .layout_section__content:before{
   content:"";

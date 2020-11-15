@@ -15,4 +15,6 @@ $lang[""] 									= "";
 
 $lang['Our Experts']				=	"Chuyên gia";
 $lang['Business']           = "Lĩnh vực hoạt động";
+
+$lang['project'] = 'du-an';
 ?>

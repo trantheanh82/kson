@@ -15,7 +15,7 @@
                                 </div>
                                 <p><?=$Settings['company_description']?></p>
 
-                                <ul class="social-icons  sx-social-links">
+                                <ul class="social-icons sx-social-links">
                                   <?php
                                       if(!empty($Settings['social_facebook']))
                                         echo '<li><a href="'.$Settings['social_facebook'].'" class="fa fa-facebook"></a> </li>';
@@ -24,7 +24,7 @@
                                       if(!empty($Settings['social_twitter']))
                                         echo '<li><a href="'.$Settings['social_twitter'].'" class="fa fa-twitter"></a> </li>';
                                       if(!empty($Settings['social_instagram']))
-                                        echo '<li><a href="'.$Settings['social_instagram'].'" class="fa fa-instagram"></a></li>';
+                                        echo '<li><a href="'.$Settings['social_instagram'].'" class="fa fa-instagram"></a> </li>';
                                   ?>
 
                                 </ul>

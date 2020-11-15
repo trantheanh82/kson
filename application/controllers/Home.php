@@ -41,6 +41,31 @@ class Home extends Public_Controller {
 
 		$this->data['sliders'] = $this->slider_model->get_home_sliders($this->current_lang);
 
+		$layout_items = $this->layout_item_model->get_home_layout(1,$this->current_lang);
+		$content = "";
+		foreach($layout_items as $k=>$v){
+			if(!empty($v->model) && !empty($v->function)){
+				$this->load->model($v->model);
+
+				$items = $this->{$v->model}->get_home_items($this->current_lang);
+				$variables = array('items'=>$items,'content'=>$v->translation->content);
+
+				if($v->code == 'projects'){
+					$this->load->model('category_model');
+					$categories =  $this->category_model->get_dropdown('project',$this->current_lang);
+					$variables = array_merge(array('categories'=>$categories),$variables);
+				}
+				$content .= $this->load->view($this->template.'/elements/modules/'.$v->view,$variables,TRUE);
+
+			}else{
+				if(!empty($v->view)){
+					$content .= $this->load->view($this->template.'/elements/modules/'.$v->view,array('content'=>$v->translation->content),TRUE);
+					//pr($v->translation);
+				}
+			}
+		}
+
+		$this->data['content'] = $content;
 		$this->render('/home/index_view');
 
 	}

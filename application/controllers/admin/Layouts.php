@@ -33,7 +33,6 @@ class Layouts extends Admin_Controller {
     if(empty($layout_id)){
     }
     $this->data['items'] = $this->layout_item_model->admin_get_all_item($layout_id);
-
     $this->render('/admin/layouts/layoutitems_edit');
   }
 

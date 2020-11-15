@@ -16,7 +16,7 @@
 	if(isset($item->id)){
 		echo form_hidden('id',$item->id);
 	}
-	echo form_hidden('refere_url', base_url(uri_string()));
+	//echo form_hidden('refere_url', base_url(uri_string()));
 
 ?>
 	<div class='box-body'>
@@ -27,64 +27,88 @@
             foreach($items as $k=>$c):
             echo form_hidden('layoutitems['.$c->code.'][id]',$c->id);
             echo form_hidden('layoutitems['.$c->code.'][sort]',$c->sort);
-            echo form_hidden('layoutitems['.$c->code.'][active]',$c->active);
             echo form_hidden('layoutitems['.$c->code.'][section]',$c->section);
             echo form_hidden('layoutitems['.$c->code.'][layout_id]',$c->layout_id);
             echo form_hidden('layoutitems['.$c->code.'][code]',$c->code);
             echo form_hidden('layoutitems['.$c->code.'][view]',$c->view);
       ?>
       <div class="layout_section" id="<?=$c->id?>">
-          <h4 class='text-center'><?=$c->section?></h4>
+					<h4 class='text-center text-bold bg-aqua' style="color:#fff;padding:1.5rem;"><?=$c->section?></h4>
+					<!-- checkbox -->
+					 <div class="form-group text-right">
+						 <label>
+							 <?=form_hidden('layoutitems['.$c->code.'][active]','N')?>
+							 <input type="checkbox" class="minimal" value="Y" name="layoutitems[<?=$c->code?>][active]" <?=$c->active=='Y'?"checked":""?>>
+							 <?=lang('Active')?>
+						 </label>
+					 </div>
           <hr  />
           <div class="layout_section__content">
               <?php
-                  if(empty($c->function) && empty($c->model)):
-
+                  //if(empty($c->function) && empty($c->model)):
         						echo language_tabs($langs, $current_lang['slug'],$c->code);
-
                     foreach ($langs as $lang):
-
                       if(isset($c->translations[$lang['slug']]->id))
                       echo form_hidden('layoutitems['.$c->code.'][translation]['.$lang['slug'].'][id]',$c->translations[$lang['slug']]->id);
+
               ?>
         						<div class="tab-pane<?=$lang['slug']==$current_lang['slug']?" active":""?>" id="<?=$lang['slug'].'_'.$c->code?>">
-                      <div class='form-group'>
+											<div class='form-group'>
+												<label for="inputEmail3" class="control-label"><?=lang("Head title")?></label>
+												<?php echo form_input('layoutitems['.$c->code.'][translation]['.$lang['slug'].'][content][head_title]',!empty($c->translations[$lang['slug']]->content->head_title)?$c->translations[$lang['slug']]->content->head_title:"",array(
+																												'class'=>'form-control',
+																												'id'=>$lang['slug'].'_head_title_'.$c->id,
+																												'style'=>'width:100%;'))?>
+											</div><!-- ./end form group-->
+
+											<div class='form-group'>
           	            <label for="inputEmail3" class="control-label"><?=lang("Content")?></label>
-          							<?php echo form_textarea('layoutitems['.$c->code.'][translation]['.$lang['slug'].'][html]',!empty($c->translations[$lang['slug']]->html)?$c->translations[$lang['slug']]->html:"",array(
+          							<?php echo form_textarea('layoutitems['.$c->code.'][translation]['.$lang['slug'].'][content][html]',!empty($c->translations[$lang['slug']]->content->html)?$c->translations[$lang['slug']]->content->html:"",array(
                                                         'class'=>'form-control article-editor',
                                                         'id'=>$lang['slug'].'_'.$c->id,
                                                         'contenteditable'=>true,
                                                         'style'=>'width:100%;border:1px solid #333'))?>
                       </div><!-- ./end form group-->
+											<?php if(isset($c->translations[$lang['slug']]->content->content_right)):?>
+												<div class='form-group'>
+	          	            <label for="inputEmail3" class="control-label"><?=lang("Content right")?></label>
+	          							<?php echo form_textarea('layoutitems['.$c->code.'][translation]['.$lang['slug'].'][content][content_right]',!empty($c->translations[$lang['slug']]->content->content_right)?$c->translations[$lang['slug']]->content->content_right:"",array(
+	                                                        'class'=>'form-control  article-editor',
+	                                                        'id'=>$lang['slug'].'_content_right'.$c->id,
+	                                                        'contenteditable'=>true,
+	                                                        'style'=>'width:100%;'))?>
+	                      </div><!-- ./end form group-->
+											<?php endif;?>
 
         						</div><!-- ./end tab pane -->
           		<?php
                       endforeach; //end foreach language
                       echo language_tabs_close();
-                  else: // if function and model has value
+                  //else: // if function and model has value
                 ?>
-                <div class='col-sm-12 col-xs-12'>
-                  <label for="inputEmail3" class="control-label"><?=lang("Function")?></label>
+								<div class="row">
+	                <div class='col-sm-12 col-xs-12'>
+	                  <label for="inputEmail3" class="control-label"><?=lang("Function")?></label>
 
-                  <div class='form-group'>
-                      <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
-                      <?=form_input('layoutitems['.$c->code.'][function]',value(isset($c->function)?$c->function:""),array('id'=>$lang['slug'].'_slug','class'=>'form-control make_slug editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
-                  </div>
-                </div>
-                <div class='col-sm-12 col-xs-12'>
-                  <label for="inputEmail3" class="control-label"><?=lang("Model")?></label>
+	                  <div class='form-group'>
+	                      <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
+	                      <?=form_input('layoutitems['.$c->code.'][function]',value(isset($c->function)?$c->function:""),array('id'=>$lang['slug'].'_slug','class'=>'form-control make_slug editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
+	                  </div>
+	                </div>
+	                <div class='col-sm-12 col-xs-12'>
+	                  <label for="inputEmail3" class="control-label"><?=lang("Model")?></label>
 
-                  <div class='form-group'>
-                      <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
-                      <?=form_input('layoutitems['.$c->code.'][model]',value(isset($c->model)?$c->model:""),array('id'=>$lang['slug'].'_slug','class'=>'form-control make_slug editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
-                  </div>
-                </div>
+	                  <div class='form-group'>
+	                      <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
+	                      <?=form_input('layoutitems['.$c->code.'][model]',value(isset($c->model)?$c->model:""),array('id'=>$lang['slug'].'_slug','class'=>'form-control make_slug editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Title")))?>
+	                  </div>
+	                </div>
+							</div>
                 <?php
-              endif; // endif function & model
+            //  endif; // endif function & model
                 ?>
-
           </div>
-      </div>
+      </div> <!-- ./end of section -->
       <?php
             endforeach;
         endif;
