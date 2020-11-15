@@ -16,7 +16,7 @@
                     <div class="container clearfix">
                         <div class="logo-header">
                             <div class="logo-header-inner logo-header-one">
-                              <?=anchor(base_url().lang('home'),img($Settings['company_logo'],false))?>
+                              <?=anchor(site_url().'/'.lang('home'),img($Settings['company_logo'],false))?>
                             </div>
                         </div>
                         <!-- NAV Toggle Button -->
