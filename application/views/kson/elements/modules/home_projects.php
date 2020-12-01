@@ -45,7 +45,7 @@
                                                 <h4 class="sx-tilte"><?=anchor($link,$v->name,array('alt'=>$v->name))?></h4>
                                                 <p class="m-b0"><?=$v->description?></p>
                                             </div>
-                                            <?=anchor($link,"<i class='fa fa-arrows-alt'></i>")?>
+                                            <?=anchor($link,"<i class='fa fa-arrows-alt'></i>",array('class'=>'mfp-link'))?>
                                             <!--<a class="mfp-link" href="/html/images/projects/portrait/pic1.jpg">
                                                 <i class="fa fa-arrows-alt"></i>
                                             </a>-->

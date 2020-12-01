@@ -6,7 +6,7 @@
     <div class='btn-select-languages text-center'>
 
     <a href='<?=base_url()?>en/home' class='site-button btn-half'>English</a>&nbsp;&nbsp;&nbsp;
-    <a href="<?=base_url()?>vi/home" class='site-button btn-half'>Vietnamese</a>
+    <a href="<?=base_url()?>vi/home" class='site-button btn-half'>Tiếng Việt</a>
 
     </div>
     <div class='footer-dark'>
