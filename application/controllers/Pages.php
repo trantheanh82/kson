@@ -35,7 +35,7 @@ class Pages extends Public_Controller {
 						$this->load->model('expert_profile_model');
 						$this->load->model('client_model');
 
-						$this->data['services'] = $this->service_model->get_items($this->current_lang);
+						//$this->data['services'] = $this->service_model->get_items($this->current_lang);
 						$this->data['experts'] = $this->expert_profile_model->get_home_items($this->current_lang);
 						$this->data['clients'] = $this->client_model->get_home_items();
 

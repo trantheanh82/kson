@@ -23,13 +23,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- BOOTSTRAP STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="/html/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/kson/css/bootstrap.min.css">
     <!-- FONTAWESOME STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="/html/css/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/kson/css/fontawesome/css/font-awesome.min.css" />
     <!-- MAIN STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="/html/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/kson/css/style.css">
     <!-- MAIN STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="/html/css/skin-9.css">
+    <link rel="stylesheet" type="text/css" href="/assets/kson/css/skin-10.css">
 
     <!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">

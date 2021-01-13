@@ -215,6 +215,7 @@ function sticky_header(){
 //________Home page testimonial function by = owl.carousel.js________//
 
 	function testimonial_home(){
+    console.log("gi day");
 	jQuery('.testimonial-home').owlCarousel({
 		loop:true,
 		autoplay:true,
@@ -222,6 +223,7 @@ function sticky_header(){
 		autoplayTimeout:6000,
 		nav:false,
 		dots: true,
+    items: 2,
 		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
 		responsive:{
 			0:{
@@ -242,6 +244,7 @@ function sticky_header(){
 		autoplay:false,
 		margin:30,
 		nav:true,
+    items: 2,
 		dots: false,
 		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
 		responsive:{

@@ -7,6 +7,7 @@ class Ourclients extends Admin_Controller {
 	function __construct(){
 
 		parent::__construct();
+		$this->load->library('user_agent');
 		$this->load->model('client_model');
 
 		if(!$this->ion_auth->in_group('admin'))
@@ -37,7 +38,13 @@ class Ourclients extends Admin_Controller {
   }
 
   function delete($id){
+		if(!empty($id)){
+			if(parent::__delete($id,'client',true,true)){
+				$this->session->set_flashdata('message','Category has been deleted.');
+			}
+		}
 
+		redirect($this->agent->referrer(),'refresh');
   }
 
   function submit(){

@@ -32,7 +32,9 @@
 						<div class='form-group'>
               <label for="inputEmail3" class="control-label"><?=lang("Name")?></label>
                 <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
-                <?=form_input('name',value(isset($item->name)?$item->name:""),array('id'=>$lang['slug'].'_name','class'=>'form-control editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Name")))?>
+                <?=form_input('name',
+								value(isset($item->name)?$item->name:""),
+								array('id'=>$lang.'_name','class'=>'form-control editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Name")))?>
 						</div>
             <div class='form-group'>
     					<label for="inputEmail3" class="control-label"><?=lang("Image Client")?></label>
@@ -42,6 +44,15 @@
     					     ?>
     		     	 	</div>
     				</div>
+
+						<div class='form-group'>
+              <label for="inputEmail3" class="control-label"><?=lang("Client Comment")?></label>
+                <!--<input type="input" name='title' class="form-control make_slug" id="title" placeholder="<?=lang("Title")?>">-->
+                <?=form_textarea('comment',
+								value(isset($item->comment) ? ($item->comment !== null ? $item->comment:""):""),
+								array('id'=>$lang.'_name','class'=>'form-control editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders','placeholder'=>lang("Name")))?>
+						</div>
+
 	</div>
 		<!-- ./col right -->
 		<div class='col-sm-3'>
