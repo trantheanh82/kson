@@ -26,7 +26,7 @@
 				<?php
 					if(!empty($items)):
 						foreach($items as $k=>$v):
-						$link_edit = base_url().'admin/'.$page_name.'/layoutitems/'.$v->id;
+						$link_edit = base_url().'admin/'.strtolower($page_name).'/layoutitems/'.$v->id;
 						$link_delete = base_url().'admin/'.$page_name.'/delete/'.$v->id;
 					?>
 					<tr>
