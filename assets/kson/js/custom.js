@@ -215,7 +215,6 @@ function sticky_header(){
 //________Home page testimonial function by = owl.carousel.js________//
 
 	function testimonial_home(){
-    console.log("gi day");
 	jQuery('.testimonial-home').owlCarousel({
 		loop:true,
 		autoplay:true,
