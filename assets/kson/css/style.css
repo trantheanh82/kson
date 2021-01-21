@@ -10204,11 +10204,11 @@ padding:7px 0px;
 button.scroltop {
 	height: 40px;
 	width: 40px;
-	background: #000;
+	background: #203354;
 	border: none;
 	position: fixed;
 	right: 15px;
-	bottom: 15px;
+	bottom: 100px;
 	text-transform: uppercase;
 	margin: 0;
 	padding: 0;
