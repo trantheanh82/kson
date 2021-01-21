@@ -27,9 +27,9 @@
                                                         <span class="ripple"></span>
                                                     </a>
                                                   <?php endif;?>
-                                                    <div class="video-section-bottom">
+                                                    <!--<div class="video-section-bottom">
                                                         <h3 class="sx-title text-white">25 Years<br>Experience</h3>
-                                                    </div>
+                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +46,7 @@
             <?php if(!empty($services))
                   $this->load->view($template.'/elements/modules/what_we_do_view')?>
 
-                  <?=$this->load->view($template.'/elements/modules/counter_in_about_view')?>
+                  <?php //$this->load->view($template.'/elements/modules/counter_in_about_view')?>
             <?php if(!empty($experts))
                   $this->load->view($template.'/elements/modules/our_team_view')?>
 

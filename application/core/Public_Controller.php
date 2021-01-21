@@ -63,6 +63,8 @@ class Public_Controller extends MY_Controller{
 			$this->data['before_head'] .= $this->data['Settings']['header_javascript'];
 		}
 
+		$this->data['before_head'] = '<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>';
+
 		if(!empty($this->data['Settings']['footer_javascript'])){
 			$this->data['before_body'] .= $this->data['Settings']['footer_javascript'];
 		}
