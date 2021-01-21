@@ -169,3 +169,5 @@
     </div>
 </div>
 <!-- LOADING AREA  END ====== -->
+
+<?=$this->load->view($template.'/elements/modules/fb_messenger_view');
