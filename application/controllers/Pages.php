@@ -44,6 +44,7 @@ class Pages extends Public_Controller {
 
 			}else{
 				$this->data['item'] = $item;
+				$this->breadcrumbs->push($item->translation->content->name,'/'.$item->slug->slug);
 				$this->render('/pages/page_view');}
 
 		}else{ redirect('/home/not_found');}

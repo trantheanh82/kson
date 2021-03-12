@@ -7,7 +7,7 @@
                   <div class="section-content">
                       <div class="row">
                           <div class="col-xl-12 col-lg-12 col-md-12">
-                              <div class="about-home-4">
+                              <div class="about-home-4 :)">
                                   <?=$item->translation->content->content?>
                               </div>
                           </div>
