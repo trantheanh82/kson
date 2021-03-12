@@ -66,6 +66,8 @@ $route['^(\w{2})/admin'] = '/admin/dashboard';
 
 $route['^(\w{2})/(gioi-thieu|about-us)'] = "/pages/index/$2";
 
+$route['^(\w{2})/(quy-trinh-lam-viec|procedurce)'] = "/pages/index/$2";
+
 $route['^(\w{2})/(category|danh-muc)-(:any)'] = "/articles/category/$3";
 $route['^(\w{2})/(category|danh-muc)-(:any)/(:num)'] = "/articles/category/$3/$4";
 
@@ -85,7 +87,6 @@ $route['^(\w{2})/(member)-(:any)'] = '/teams/details/$3';
 $route['^(\w{2})/assets^(.*)'] = '/assets$2';
 $route['^(\w{2})/api/^(.*)'] = '/api/$2';
 $route['^(\w{2})/filenamager/^(.*)'] = '/filemanager/$2';
-
 
 
 $route['^(\w{2})/(contact|contact-us|lien-he)'] = 'pages/contact';
