@@ -16,6 +16,7 @@ class Pages extends Public_Controller {
   public function index($slug){
 
 		if(!empty($slug) && $item = $this->page_model->get_page($slug,$this->current_lang)){
+			pr($items);exit();
 			$other_page = $this->page_model->get_other_page($this->current_lang);
 
 			$this->data['page_title'] .= $this->data['page_inner_title'] = $item->translation->content->name;
