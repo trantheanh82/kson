@@ -65,7 +65,7 @@ $route['^(\w{2})/clearcache'] = 'home/clearcache';
 $route['^(\w{2})/admin'] = '/admin/dashboard';
 
 $route['^(\w{2})/(gioi-thieu|about-us)'] = "/pages/index/$2";
-$route['^(\w{2})/(quy-trinh-lam-viec|procedurce)'] = "/pages/index/$2";
+$route['^(\w{2})/(quy-trinh-lam-viec|proceduce)'] = "/pages/index/$2";
 
 $route['^(\w{2})/(category|danh-muc)-(:any)'] = "/articles/category/$3";
 $route['^(\w{2})/(category|danh-muc)-(:any)/(:num)'] = "/articles/category/$3/$4";
