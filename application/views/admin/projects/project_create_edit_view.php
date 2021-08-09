@@ -220,7 +220,7 @@
 					<div class='form-group'>
 						<label for="projects_image" class='control-label'><?=lang("Image")?> (510x510)</label>
 						<div class="">
-							<?=$this->load->view('admin/elements/modules/upload_view',array('multiple'=>true,'basic'=>true,'value'=>(isset($item->images)?$item->images:""),'field_id'=>'images','file'=>'images','id'=>"files",'type_file'=>'projects'))?>
+							<?=$this->load->view('admin/elements/modules/upload_view',array('multiple'=>true,'basic'=>true,'value'=>(isset($item->images)?$item->images:""),'field_id'=>'images','file'=>'images','id'=>"files",'type_file'=>'projects','set_default'=>true))?>
 						</div>
 					</div>
 					<hr />

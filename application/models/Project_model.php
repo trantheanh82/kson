@@ -30,16 +30,16 @@ class Project_model extends MY_Model
 	                            ->where($conditions)
 	                            ->order_by('sort','ASC')
 	                            ->get_all();
+														//	pr($items);
 
 			foreach($items as $k=>$v){
 				if(!empty($v->images)){
 					$jsondecode = json_decode($v->images);
-					$items[$k]->images = reset($jsondecode)->name;
+					$items[$k]->images = $jsondecode[0]->name;
 				}else{
 					$items[$k]->images = "";
 				}
 			}
-
 		  return $items;
     }
 
@@ -55,7 +55,7 @@ class Project_model extends MY_Model
 			foreach($items as $k=>$v){
 				if(!empty($v->images)){
 					$jsondecode = json_decode($v->images);
-					$items[$k]->images = reset($jsondecode)->name;
+					$items[$k]->images = $jsondecode[0]->name;
 				}else{
 					$items[$k]->images = "";
 				}
@@ -108,4 +108,6 @@ class Project_model extends MY_Model
 			}
 			return $items;
 		}
+
+
 }

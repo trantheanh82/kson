@@ -4,6 +4,9 @@
 		$type_files = "image";
 	}
 	//hidden input form
+	//
+	if(!isset($set_default))
+		$set_default = false;
 
 echo form_hidden('type_file',$type_file);
 echo form_hidden('delete_url',base_url().'admin/upload/delete/');
@@ -58,7 +61,7 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
 	    <?php
 		    if(!empty($value)):
 		    	foreach($value as $k=>$v):
-				$link = base_url().'assets/upload/projects/'.$v->name;
+					$link = base_url().'assets/upload/projects/'.$v->name;
 		    	$link_thumb = base_url().'assets/upload/projects/thumbnail/'.$v->name;
 		    ?>
 		    <tr class="template-download fade in">
@@ -70,21 +73,26 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
               </td>
               <td>
 	              <p class="name">
-	                  <a href="<?=$link?>" title="<?=$v->name?>" data-gallery=""><?=$v->name?></a>
+	                  <a href="<?=$link?>" title="<?=$v->name?>" data-gallery=""><?=substr($v->name,0,23)?> ...</a>
 	              </p>
+								<input type='radio' name="profile_image" value="<?=$k?>" <?=($v->default==1)?"checked":""?> />
+								<label>Profile image</label>
               </td>
               <td>
+									<div>
                   <span class="size"><?=$v->size?></span>
                   <input type="hidden" name="<?=$field_id?>[<?=$k?>][name]" value="<?=$v->name?>">
                   <input type="hidden" name="<?=$field_id?>[<?=$k?>][size]" value="<?=$v->size?>">
+								</div><div>
+									<button class="btn btn-danger delete" data-type="DELETE" data-url="<?=base_url()?>admin/upload/delete/product?file=<?=$v->name?>">
+											<i class="glyphicon glyphicon-trash"></i>
+											<span>Delete</span>
+									</button>
+									<!--<input type="checkbox" name="delete" value="1" class="toggle">-->
+								</div>
               </td>
               <td>
 
-                      <button class="btn btn-danger delete" data-type="DELETE" data-url="<?=base_url()?>admin/upload/delete/product?file=<?=$v->name?>">
-                          <i class="glyphicon glyphicon-trash"></i>
-                          <span>Delete</span>
-                      </button>
-                      <input type="checkbox" name="delete" value="1" class="toggle">
 
               </td>
           </tr>
@@ -113,7 +121,9 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
               </td>
               <td>
                   {% if (window.innerWidth > 480 || !o.options.loadImageFileTypes.test(file.type)) { %}
-                      <p class="name">{%=file.name%}</p>
+										<div>
+											<p class="name">{%=file.name%}</p>
+										</div>
                   {% } %}
                   <strong class="error text-danger"></strong>
               </td>
@@ -160,7 +170,10 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
                       <p class="name">
                           {% if (file.url) { %}
                               <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                          {% } else { %}
+															<br />
+															<input type='radio' name="profile_image" value="{%=n%}" />
+															<label>Profile image</label>
+													{% } else { %}
                               <span>{%=file.name%}</span>
 
                           {% } %}
@@ -181,7 +194,7 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
                           <i class="glyphicon glyphicon-trash"></i>
                           <span>Delete</span>
                       </button>
-                      <input type="checkbox" name="delete" value="1" class="toggle">
+                      <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
                   {% } else { %}
                       <button class="btn btn-warning cancel">
                           <i class="glyphicon glyphicon-ban-circle"></i>

@@ -61,20 +61,39 @@ class Projects extends Admin_Controller {
 
 			unset($this->data['item']->translations);
 			unset($this->data['item']->slugs);
+
 			$this->render('admin/projects/project_create_edit_view');
 		}
 	}
 
 	function delete($id){
-
+		if(parent::__delete($id,'project',true,true)){
+			$this->session->set_flashdata('message','project has been deleted.');
+		}else{
+			$this->session->set_flashdata('error','Error occures, please try again');
+			redirect($this->agent->referrer(),'refresh');
+		}
+		redirect('admin/projects','refresh');
 	}
 
 	function submit(){
 		$data = $this->input->post();
 		if(!empty($data['images'])){
-			$data['images'][key($data['images'])]['default'] = 1;
+			foreach($data['images'] as $k=>$v){
+				if($k == $data['profile_image']){
+					$data['images'][$k]['default'] = 1;
+				}else{
+					$data['images'][$k]['default'] = 0;
+				}
+			}
+
+			usort($data['images'],function($i1,$i2){
+				return $i1['default'] < $i2['default'];
+			});
+
 			$data['images'] = json_encode($data['images']);
 			unset($data['files']);
+
 		}
 
 		foreach($data['relation']['translation'] as $k=>$value){
