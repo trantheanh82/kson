@@ -75,8 +75,10 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
 	              <p class="name">
 	                  <a href="<?=$link?>" title="<?=$v->name?>" data-gallery=""><?=substr($v->name,0,23)?> ...</a>
 	              </p>
+								<?php if($set_default): ?>
 								<input type='radio' name="profile_image" value="<?=$k?>" <?=($v->default==1)?"checked":""?> />
 								<label>Profile image</label>
+							<?php endif; ?>
               </td>
               <td>
 									<div>
@@ -171,8 +173,10 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
                           {% if (file.url) { %}
                               <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
 															<br />
+															<?php if($set_default): ?>
 															<input type='radio' name="profile_image" value="{%=n%}" />
 															<label>Profile image</label>
+															<?php endif;?>
 													{% } else { %}
                               <span>{%=file.name%}</span>
 
