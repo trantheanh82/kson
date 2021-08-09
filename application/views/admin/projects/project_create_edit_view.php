@@ -244,7 +244,7 @@
 	/*./end-box
 		*/
 	$this->load->view('admin/elements/ui/box_content/box_footer',array('command_tools'=>array('save','cancel')));
-?>
+?> 
 </form>
 
 <?=content_close()?>
