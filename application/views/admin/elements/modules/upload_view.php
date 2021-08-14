@@ -244,7 +244,6 @@ $(function() {
   );
 	console.log(window.location.hostname);
   if (window.location.hostname === 'blueimp.github.io' || window.location.hostname === "localhost" ) {
-console.log(window.location.hostname);
     // Demo settings:
     $('#main_form_submit').fileupload('option', {
       url: '<?=$this->config->base_url().$current_lang['slug']?>/admin/upload/',
@@ -281,16 +280,19 @@ console.log(window.location.hostname);
         $('<div class="alert alert-danger"/>')
           .text('Upload server currently unavailable - ' + new Date())
           .appendTo('#main_form_submit');
-      })    }
+      })
+		}
   } else {
     // Load existing files:
     $('#main_form_submit').addClass('fileupload-processing');
     $.ajax({
       // Uncomment the following to send cross-domain cookies:
       //xhrFields: {withCredentials: true},
-	  url: $('#main_form_submit').fileupload('option', 'url'),
-      dataType: 'json',
-      context: $('#main_form_submit')[0]
+	  // url: $('#main_form_submit').fileupload('option', 'url'),
+    //   dataType: 'json',
+    //   context: $('#main_form_submit')[0]
+			url: '<?=$this->config->base_url().$current_lang['slug']?>/admin/upload/',
+			type: 'HEAD'
     })
       .always(function() {
         $(this).removeClass('fileupload-processing');
