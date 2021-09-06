@@ -243,7 +243,7 @@ $(function() {
     window.location.href.replace(/\/[^/]*$/, '/cors/result.html?%s')
   );
 	console.log(window.location.hostname);
-  if (window.location.hostname === 'blueimp.github.io' || window.location.hostname === "localhost" ) {
+  if (window.location.hostname === 'blueimp.github.io' || window.location.hostname === "localhost" ||  window.location.hostname == "kson.vn" ) {
     // Demo settings:
     $('#main_form_submit').fileupload('option', {
       url: '<?=$this->config->base_url().$current_lang['slug']?>/admin/upload/',
