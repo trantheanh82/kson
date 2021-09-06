@@ -69,7 +69,7 @@
 							<label for="inputEmail3" class="control-label"><?=lang("Content")?></label>
 							<div class="">
 								<?php echo form_textarea('relation[translation]['.$lang['slug'].'][content][content]',value(isset($item->content[$lang['slug']]->content)?$item->content[$lang['slug']]->content:""),
-													array('class'=>'form-control basic-editor','id'=>$lang['slug'].'_content','contenteditable'=>true));?>
+													array('class'=>'form-control article-editor','id'=>$lang['slug'].'_content','contenteditable'=>true));?>
 				            </div>
 						</div>
 
@@ -244,7 +244,7 @@
 	/*./end-box
 		*/
 	$this->load->view('admin/elements/ui/box_content/box_footer',array('command_tools'=>array('save','cancel')));
-?> 
+?>
 </form>
 
 <?=content_close()?>
