@@ -124,7 +124,7 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
               <td>
                   {% if (window.innerWidth > 480 || !o.options.loadImageFileTypes.test(file.type)) { %}
 										<div>
-											<p class="name">{%=file.name%}</p>
+											<p class="name">{%=file.name.substring(1,10)%}</p>
 										</div>
                   {% } %}
                   <strong class="error text-danger"></strong>
@@ -171,7 +171,7 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
                   {% if (window.innerWidth > 480 || !file.thumbnailUrl) { %}
                       <p class="name">
                           {% if (file.url) { %}
-                              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name.substring(1,10)%}</a>
 															<br />
 															<?php if($set_default): ?>
 															<input type='radio' name="profile_image" value="{%=n%}" />
