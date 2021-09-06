@@ -63,10 +63,9 @@
                                         </a>
                                     </div>
                                 </div>
-                              -->
                             </div>
-                          <?php endif;?> -->
-                        </div>
+                          <?php endif;?>
+                        </div> -->
 
                     </div>
                     <!--
