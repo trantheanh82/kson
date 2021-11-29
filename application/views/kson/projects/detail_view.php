@@ -6,7 +6,7 @@
             <div class="section-full p-tb80 inner-page-padding stick_in_parent">
             	<div class="container">
                     <div class="row">
-                        <div  class="col-lg-7 col-md-7  sticky_column">
+                        <div  class="col-lg-12 col-md-12  sticky_column">
                             <div  class="project-detail-containt">
                                 <div class="bg-white text-black">
                                     <h3><?=strip_tags($item->description)?></h3>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-5 col-md-5 ">
+                        <!--<div class="col-lg-5 col-md-5 ">
                             <?php if(!empty($item->images)):?>
                             <div class="project-detail-outer">
                                 <?php foreach($item->images as $k=>$v): ?>
@@ -63,10 +63,9 @@
                                         </a>
                                     </div>
                                 </div>
-                              -->
                             </div>
                           <?php endif;?>
-                        </div>
+                        </div> -->
 
                     </div>
                     <!--

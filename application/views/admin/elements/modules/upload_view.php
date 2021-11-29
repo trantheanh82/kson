@@ -124,7 +124,7 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
               <td>
                   {% if (window.innerWidth > 480 || !o.options.loadImageFileTypes.test(file.type)) { %}
 										<div>
-											<p class="name">{%=file.name%}</p>
+											<p class="name">{%=file.name.substring(1,10)%}</p>
 										</div>
                   {% } %}
                   <strong class="error text-danger"></strong>
@@ -171,7 +171,7 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
                   {% if (window.innerWidth > 480 || !file.thumbnailUrl) { %}
                       <p class="name">
                           {% if (file.url) { %}
-                              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name.substring(1,10)%}</a>
 															<br />
 															<?php if($set_default): ?>
 															<input type='radio' name="profile_image" value="{%=n%}" />
@@ -188,11 +188,9 @@ echo form_hidden('delete_url',base_url().'admin/upload/delete/');
                   {% } %}
               </td>
               <td>
-                  <span class="size">{%=o.formatFileSize(file.size)%}</span>
-                  <input type='hidden' name="<?=$file?>[{%=n%}][name]" value="{%=file.name%}" />
-                  <input type='hidden' name="<?=$file?>[{%=n%}][size]" value="{%=o.formatFileSize(file.size)%}" />
-              </td>
-              <td>
+									<span class="size">{%=o.formatFileSize(file.size)%}</span>
+									<input type='hidden' name="<?=$file?>[{%=n%}][name]" value="{%=file.name%}" />
+									<input type='hidden' name="<?=$file?>[{%=n%}][size]" value="{%=o.formatFileSize(file.size)%}" />
                   {% if (file.deleteUrl) { %}
                       <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                           <i class="glyphicon glyphicon-trash"></i>
@@ -243,7 +241,7 @@ $(function() {
     window.location.href.replace(/\/[^/]*$/, '/cors/result.html?%s')
   );
 	console.log(window.location.hostname);
-  if (window.location.hostname === 'blueimp.github.io' || window.location.hostname === "localhost" ) {
+  if (window.location.hostname === 'blueimp.github.io' || window.location.hostname === "localhost" ||  window.location.hostname == "kson.vn" ) {
     // Demo settings:
     $('#main_form_submit').fileupload('option', {
       url: '<?=$this->config->base_url().$current_lang['slug']?>/admin/upload/',
